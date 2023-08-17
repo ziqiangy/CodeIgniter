@@ -1,7 +1,7 @@
 <html>
     <h1>register me</h1>
 
-    <?php echo form_open("Register/insert"); ?>
+    <?php echo form_open("user/register"); ?>
 
         <label>first name</label><br>
 
@@ -19,7 +19,7 @@
         <label>email</label><br>
         <input type="text" name="email" value="" /><br>
 
-        <input type="submit" value="submit" /><br>
+        <input type="submit" value="Register" /><br>
 
     </form>
 </html>
