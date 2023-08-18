@@ -9,16 +9,30 @@ class User extends CI_Controller{
 
     public function register(){
         $form_data = $this->input->post();
+        
+        //check first, last, username, password, email exist, if not die the script with error.
+
+        if(strlen($form_data['firstname'])<3) die("firstname can't be less than 3 characters");
+        if(strlen($form_data['lastname'])<3) die("lastname can't be less than 3 characters");
+        if(strlen($form_data['username'])<3) die("username can't be less than 3 characters");
+        if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$form_data['password'])) die("password too weak");
+        if(!filter_var($form_data['email'], FILTER_VALIDATE_EMAIL)) die("email format is not validate");
+
+
+
         //salt and hash the password before save
         $salt1 = "qzu$<.";
         $salt2 = "p1g!~*";
         $tempPass = $form_data['password'];
         $form_data['password'] = hash("ripemd128","$salt1$tempPass$salt2");
-        //end salt and hash
-        
+
+
         // print_r($form_data);
         $this->load->model("Users");
         $this->Users->insertOneUser($form_data);
+
+
+        $this->loginView();
     }
 
     public function loginView(){
@@ -41,9 +55,14 @@ class User extends CI_Controller{
 
         //validate if username's password match
         if($userData[0]['password'] == $form_data['password']){
-            echo "match, save username and id to session";
+            //match, save username and id to session
+            session_start();
+            $_SESSION['user_id']=$userData[0]['id'];
+            $_SESSION['username']=$userData[0]['username'];
+            echo "welcome ".$_SESSION['username'];
+            
         }else{
-            echo "not match, username or password incorrect";
+            //not match, username or password incorrect
         }
         
         
