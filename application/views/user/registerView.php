@@ -30,4 +30,10 @@
         <li>At least one digit.</li>
         <li>At least one special character, #?!@$%^&*-~</li>
     </ul>
+
+
+    
+<p>Already have a account?
+
+<a title="Go Login" href='<?php echo base_url ('index.php/user/loginView'); ?>'>Go Login</a>
 </html>

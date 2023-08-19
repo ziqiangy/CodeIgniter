@@ -60,5 +60,20 @@
 // }
 
 
-$t = date('Y-m-d H:i:s');
-print_r($t);
+// $t = date('Y-m-d H:i:s');
+// print_r($t);
+
+/**
+ * split array
+ */
+
+ $d = Array ( "firstname" => "peter",
+               "lastname" => 'yuan',
+                "id" => 10 );
+ $d1 = $d["id"];
+ $d2 = Array('firstname'=>$d["firstname"],"lastname"=> $d['lastname']);
+
+ print_r($d1);
+ print_r($d2);
+
+

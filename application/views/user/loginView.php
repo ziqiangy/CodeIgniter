@@ -11,4 +11,14 @@ please login with your username and password:
 </form>
 
 
+<!-- <?php form_open("user/register") ?>
+<p>Don't have an account? go register</p>
+<input type="submit" value="register">
+</form> -->
+<p>Don't have an account?
+
+<a title="Go Register" href='<?php echo base_url ('index.php/user/registerView'); ?>'>Go Register</a>
+
+</p>
+
 </html>
