@@ -81,11 +81,24 @@
 
 
 /**
-             * just the second way to do session in CIframework
-             */
-        //     $this->load->library('session');
-        //     $newdata = array(
-        //         'user_id'  => $userData[0]['id'],
-        //         'username'     => $userData[0]['username']
-        // );
-        // $this->session->set_userdata($newdata);
+ * * just the second way to do session in CIframework
+ */
+//     $this->load->library('session');
+//     $newdata = array(
+//         'user_id'  => $userData[0]['id'],
+//         'username'     => $userData[0]['username']
+// );
+// $this->session->set_userdata($newdata);
+
+
+
+/**
+ * php create timestamp
+ */
+
+ $d = date('Y-m-d H:i:s');
+ var_dump($d);
+
+
+
+

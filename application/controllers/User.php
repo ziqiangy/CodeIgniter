@@ -69,8 +69,11 @@ class User extends CI_Controller{
         $form_data = $this->input->post();
         // print_r($form_data);
         $id = $form_data["id"];
-        $data = array("firstname"=>$form_data["firstname"],
-                                "lastname"=>$form_data['lastname']);
+        $data = array(
+            "firstname"=>$form_data["firstname"],
+            "lastname"=>$form_data['lastname'],
+            "update_time"=>date('Y-m-d H:i:s')
+        );
 
         $this->load->model('Users');
         $this->Users->updateCurrentUserFields($id,$data);
