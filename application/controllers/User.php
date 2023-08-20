@@ -43,9 +43,11 @@ class User extends CI_Controller{
         $db_data = $this->Users->searchByUsername($form_data['username']);
 
         if($db_data){
+            if($db_data[0]['is_active']==0) die("The user account is closed, please contact admin");
             $this->validateLogin($form_data,$db_data[0]);
         }else {
             $db_data = $this->Users->searchByEmail($form_data['username']);
+            if($db_data[0]['is_active']==0) die("The user account is closed, please contact admin");
             $db_data ? $this->validateLogin($form_data,$db_data[0]) : die("not find email");
         }
         
@@ -119,6 +121,16 @@ class User extends CI_Controller{
         echo "I am logged out, please login again";
         $this->loginView();
         // print_r($_session['user_id']);
+    }
+
+    public function deactivate(){
+        session_start();
+        $id = $_SESSION["user_id"];
+        session_destroy();
+        $this->load->model("Users");
+        $this->Users->deactivateUser($id);
+        echo "User deactiveated";
+
     }
 
 

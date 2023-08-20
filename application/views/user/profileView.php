@@ -23,4 +23,8 @@
     <?php echo form_open("user/logout") ?>
         <input type="submit" value="logout"><br>
     </form>
+
+    <?php echo form_open("user/deactivate") ?>
+        <input type="submit" value="Close account"><br>
+    </form>
 </html>

@@ -34,4 +34,10 @@ class Users extends CI_Model{
         $this->db->where('id', $id);
         $this->db->update('users', $data);
     }
+
+    public function deactivateUser($id){
+        $this->db->where('id',$id);
+        $data = array('is_active'=>0);
+        $this->db->update('users',$data);
+    }
 }
