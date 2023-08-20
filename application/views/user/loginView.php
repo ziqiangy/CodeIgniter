@@ -21,4 +21,10 @@ please login with your username and Email address:
 
 </p>
 
+<p>Forget your password?
+
+<a title="Go Forgetpassword" href='<?php echo base_url ('index.php/user/forgetPasswordView'); ?>'>Go Forget Password</a>
+
+</p>
+
 </html>

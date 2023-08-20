@@ -2,8 +2,6 @@
 class User extends CI_Controller{
 
     public function registerView(){
-        // echo "hello register page";
-        $this->load->helper('form');
         $this->load->view('user/registerView');
     }
 
@@ -36,7 +34,6 @@ class User extends CI_Controller{
     }
 
     public function loginView(){
-        $this->load->helper('form');
         $this->load->view('user/loginView');
     }
 
@@ -60,9 +57,45 @@ class User extends CI_Controller{
         $this->load->model("Users");
         $user_data = $this->Users->searchCurrentUser($_SESSION['user_id']);
         // print_r($user_data);
-
-        $this->load->helper('form');
         $this->load->view('user/profileView',$user_data[0]);
+    }
+
+    public function forgetPasswordView(){
+        $this->load->view('user/forgetPasswordView');
+    }
+
+    public function newPasswordEnterView(){
+        $this->load->view('user/newPasswordEnterView');
+    }
+
+    public function forgetPassword(){
+        $form_data = $this->input->post();
+        // var_dump($form_data['email']);
+        $this->load->model("Users");
+        $res = $this->Users->searchByEmail($form_data['email']);
+        $this->load->view("User/newPasswordEnterView",array('id'=>$res[0]['id']));
+    }
+
+    public function newPassword(){
+        $form_data = $this->input->post();
+        // var_dump($form_data['password']);
+
+        if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$form_data['password'])) die("password too weak");
+
+
+        $salt1 = "qzu$<.";
+        $salt2 = "p1g!~*";
+        $tempPass = $form_data['password'];
+        $form_data['password'] = hash("ripemd128","$salt1$tempPass$salt2");
+
+        $id = $form_data['id'];
+        $data = array(
+            'password'=>$form_data['password']
+        );
+        $this->load->model("Users");
+        $this->Users->updateCurrentUserFields($id,$data);
+        echo "password reset success <br>";
+        $this->loginView();
     }
 
     public function update(){
