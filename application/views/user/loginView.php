@@ -1,8 +1,8 @@
 <html>
-please login with your username and password:
+please login with your username and Email address:
 
 <?php echo form_open('user/login') ?>
-<label for="">Username</label><br>
+<label for="">Username or Email</label><br>
 <input type="text" name='username' value=''><br>
 <label for="">Password</label><br>
 <input type="password" name='password' value=''><br>

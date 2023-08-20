@@ -18,6 +18,11 @@ class Users extends CI_Model{
         
     }
 
+    public function searchByEmail($data){
+        $res = $this->db->select("*")->where('email',$data)->limit(1)->get('users')->result_array();
+        return $res;
+    }
+
     public function searchCurrentUser($id){
         //try to find only one result show. try to find write sql and pass
         $res = $this->db->select("*")->where('id',$id)->limit(1)->get('users')->result_array();

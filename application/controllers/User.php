@@ -42,48 +42,15 @@ class User extends CI_Controller{
 
     public function login(){
         $form_data = $this->input->post();
-
-        $salt1 = "qzu$<.";
-        $salt2 = "p1g!~*";
-        $tempPass = $form_data['password'];
-        $form_data['password'] = hash("ripemd128","$salt1$tempPass$salt2");
-
         $this->load->model("Users");
-        $userData = $this->Users->searchByUsername($form_data['username']);
+        $db_data = $this->Users->searchByUsername($form_data['username']);
 
-        // var_dump($userData);
-
-        //validate if username's password match
-        if($userData[0]['password'] == $form_data['password']){
-            //match, save username and id to session
-
-
-            
-            session_start();
-            $_SESSION['user_id']=$userData[0]['id'];
-            $_SESSION['username']=$userData[0]['username'];
-            echo "welcome ".$_SESSION['username'];
-            echo "<br>";
-
-            echo "<a href='".base_url('index.php/user/profileView')."'>Go Profile View</a>";
-
-
-
-            /**
-             * just the second way to do session in CIframework
-             */
-        //     $this->load->library('session');
-        //     $newdata = array(
-        //         'user_id'  => $userData[0]['id'],
-        //         'username'     => $userData[0]['username']
-        // );
-        // $this->session->set_userdata($newdata);
-            
-        }else{
-            die("username or password incorrect");
-            //not match, username or password incorrect
+        if($db_data){
+            $this->validateLogin($form_data,$db_data[0]);
+        }else {
+            $db_data = $this->Users->searchByEmail($form_data['username']);
+            $db_data ? $this->validateLogin($form_data,$db_data[0]) : die("not find email");
         }
-        
         
     }
 
@@ -116,5 +83,24 @@ class User extends CI_Controller{
         echo "I am logged out, please login again";
         $this->loginView();
         // print_r($_session['user_id']);
+    }
+
+
+    /**
+     * a function for login, input formdata and dbData[0]~ the only one row search user result
+     */
+    public function validateLogin($formData,$dbData){
+        $salt1 = "qzu$<.";
+        $salt2 = "p1g!~*";
+        $formPassword = $formData['password'];
+        $formPassword = hash("ripemd128","$salt1$formPassword$salt2");
+        if($formPassword == $dbData['password']){
+            session_start();
+            $_SESSION['user_id']=$dbData['id'];
+            $_SESSION['username']=$dbData['username'];
+            echo "welcome ".$_SESSION['username'];
+            echo "<br>";
+            echo "<a href='".base_url('index.php/user/profileView')."'>Go Profile View</a>";
+        }else{die("username or password incorrect");}
     }
 }

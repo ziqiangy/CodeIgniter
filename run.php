@@ -67,13 +67,25 @@
  * split array
  */
 
- $d = Array ( "firstname" => "peter",
-               "lastname" => 'yuan',
-                "id" => 10 );
- $d1 = $d["id"];
- $d2 = Array('firstname'=>$d["firstname"],"lastname"=> $d['lastname']);
+//  $d = Array ( "firstname" => "peter",
+//                "lastname" => 'yuan',
+//                 "id" => 10 );
+//  $d1 = $d["id"];
+//  $d2 = Array('firstname'=>$d["firstname"],"lastname"=> $d['lastname']);
 
- print_r($d1);
- print_r($d2);
+//  print_r($d1);
+//  print_r($d2);
 
 
+
+
+
+/**
+             * just the second way to do session in CIframework
+             */
+        //     $this->load->library('session');
+        //     $newdata = array(
+        //         'user_id'  => $userData[0]['id'],
+        //         'username'     => $userData[0]['username']
+        // );
+        // $this->session->set_userdata($newdata);
