@@ -19,6 +19,11 @@ class Flashcards extends CI_Model{
         return $res;
     }
 
+    public function countAll(){
+        $res = $this->db->count_all_results('flashcards');
+        return $res;
+    }
+
     public function displayAll(){
         $res = $this->db->get('flashcards')->result_array();
         return $res;

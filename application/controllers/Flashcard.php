@@ -12,8 +12,10 @@ class Flashcard extends CI_Controller{
 
         $this->load->model('flashcards');
         $arr = $this->flashcards->displayOneOffset($offset);
+        $countAll = $this->flashcards->countAll();
         [$data] = $arr;
         $data["offset"] = $offset;
+        $data["count"] = $countAll;
 
         // print_r($data);
 

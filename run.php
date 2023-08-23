@@ -103,11 +103,19 @@
  * calculation in ulr
  */
 
- $offset=1;
+//  $offset=1;
 
- $url = 'index.php/flashcard/onecardview/'.strval($offset+1);
+//  $url = 'index.php/flashcard/onecardview/'.strval($offset+1);
 
- echo $url;
+//  echo $url;
+
+
+/**
+ * reminder
+ */
+
+ $d = 1%5;
+ echo $d;
 
 
 
