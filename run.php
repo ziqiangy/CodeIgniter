@@ -118,5 +118,8 @@
  echo $d;
 
 
+ <?php base_url("index.php/flashcard/updateView/".$d['id']) ?>
+
+
 
 

@@ -5,11 +5,11 @@ class Flashcards extends CI_Model{
     }
 
     public function updateOne($id,$data){
-        $this->db->update('flashcards',$data,array('id',$id));
+        $this->db->update('flashcards',$data,array('id'=>$id));
     }
 
     public function displayOne($id){
-        $res = $this->db->get_where('flashcards',array('id',$id),1)->result_array();
+        $res = $this->db->get_where('flashcards',array('id'=>$id),1,0)->result_array();
         return $res;
 
     }
@@ -30,7 +30,13 @@ class Flashcards extends CI_Model{
     }
 
     public function deleteOne($id){
-        $this->db->delete('flashcards',array('id',$id));
+        $this->db->delete('flashcards',array('id'=>$id));
 
+    }
+    public function disable($id){
+        $data = array(
+            "is_active"=> 0,
+        );
+        $this->db->update('flashcards',$data,array('id'=>$id));
     }
 }
