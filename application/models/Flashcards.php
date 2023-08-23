@@ -14,6 +14,11 @@ class Flashcards extends CI_Model{
 
     }
 
+    public function displayOneOffset($offset){
+        $res = $this->db->get('flashcards',1,$offset)->result_array();
+        return $res;
+    }
+
     public function displayAll(){
         $res = $this->db->get('flashcards')->result_array();
         return $res;

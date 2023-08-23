@@ -96,8 +96,18 @@
  * php create timestamp
  */
 
- $d = date('Y-m-d H:i:s');
- var_dump($d);
+//  $d = date('Y-m-d H:i:s');
+//  var_dump($d);
+
+/**
+ * calculation in ulr
+ */
+
+ $offset=1;
+
+ $url = 'index.php/flashcard/onecardview/'.strval($offset+1);
+
+ echo $url;
 
 
 
