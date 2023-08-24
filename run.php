@@ -114,12 +114,21 @@
  * reminder
  */
 
- $d = 1%5;
- echo $d;
+//  $d = 1%5;
+//  echo $d;
 
 
- <?php base_url("index.php/flashcard/updateView/".$d['id']) ?>
+/**
+ * array push
+ */
 
+ $data = array(
+  'id'=>2,
+  'definition'=>'apple'
+ );
+
+ $fin = array_merge($data,array("user_id"=>3));
+ print_r($fin);
 
 
 

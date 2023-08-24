@@ -1,12 +1,19 @@
 <?php
 class Flashcard extends CI_Controller{
+    function __construct(){
+        parent::__construct();
+        session_start();
+        if(!isset($_SESSION["user_id"])) die("not authorized user, login first");
+    }
     public function insertView(){
-        $this->load->view('flashcard/insertView.php');
+        $this->load->view('flashcard/insertView');
     }
     public function insertOne(){
         $form_data = $this->input->post();
+        $data = array_merge($form_data,array("user_id"=>$_SESSION["user_id"]));
         $this->load->model("flashcards");
-        $this->flashcards->insertOne($form_data);
+        $this->flashcards->insertOne($data);
+        $this->displayAllList();
     }
     public function oneCardView($offset){
 
