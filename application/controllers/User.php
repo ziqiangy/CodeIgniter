@@ -1,36 +1,46 @@
 <?php
 class User extends CI_Controller{
 
-    public function registerView(){
-        $this->load->view('user/registerView');
+    public function register(){
+
+        if ($this->input->server('REQUEST_METHOD') === 'GET') {
+            $this->load->view('user/register');
+         } elseif ($this->input->server('REQUEST_METHOD') === 'POST') {
+            //set validation rules;
+            $this->form_validation->set_rules("firstname","Firstname","trim|required|min_length[3]");
+            $this->form_validation->set_rules("lastname","Lastname","trim|required|min_length[3]");
+            $this->form_validation->set_rules("username","Username","trim|required|min_length[3]");
+            $this->form_validation->set_rules("password","Password","trim|required|callback_email_check");
+            $this->form_validation->set_rules("email","Email","trim|required|valid_email");
+
+            if ($this->form_validation->run() == FALSE)
+                {
+                    $this->load->view('user/register');
+                }else{
+                    //data is validate and save to database
+                    $form_data = $this->input->post();
+                    //salt and hash the password before save
+                    $salt1 = "qzu$<.";
+                    $salt2 = "p1g!~*";
+                    $tempPass = $form_data['password'];
+                    $form_data['password'] = hash("ripemd128","$salt1$tempPass$salt2");
+                    // print_r($form_data);
+                    $this->load->model("Users");
+                    $this->Users->insertOneUser($form_data);
+                    //load loginView, if we use load->view here, the url not going to change to user/loginView
+                    // $this->load->view('user/loginView');
+                    redirect('/user/loginView', 'refresh');
+                }
+         }       
     }
 
-    public function register(){
-        $form_data = $this->input->post();
-        
-        //check first, last, username, password, email exist, if not die the script with error.
-
-        if(strlen($form_data['firstname'])<3) die("firstname can't be less than 3 characters");
-        if(strlen($form_data['lastname'])<3) die("lastname can't be less than 3 characters");
-        if(strlen($form_data['username'])<3) die("username can't be less than 3 characters");
-        if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$form_data['password'])) die("password too weak");
-        if(!filter_var($form_data['email'], FILTER_VALIDATE_EMAIL)) die("email format is not validate");
-
-
-
-        //salt and hash the password before save
-        $salt1 = "qzu$<.";
-        $salt2 = "p1g!~*";
-        $tempPass = $form_data['password'];
-        $form_data['password'] = hash("ripemd128","$salt1$tempPass$salt2");
-
-
-        // print_r($form_data);
-        $this->load->model("Users");
-        $this->Users->insertOneUser($form_data);
-
-
-        $this->loginView();
+    public function email_check($str){
+        if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$str)){
+            $this->form_validation->set_message('email_check', '%s is too simple');
+            return FALSE;
+        }else{
+            return TRUE;
+        }
     }
 
     public function loginView(){

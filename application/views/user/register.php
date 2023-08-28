@@ -1,23 +1,25 @@
 
     <h1>register me</h1>
 
+    <?php echo validation_errors(); ?>
+
     <?php echo form_open("user/register"); ?>
 
         <label>first name</label><br>
 
-        <input type="text" name="firstname" value="" /><br>
+        <input type="text" name="firstname" value="<?php echo set_value('firstname'); ?>" /><br>
 
         <label>last name</label><br>
-        <input type="text" name="lastname" value="" /><br>
+        <input type="text" name="lastname" value="<?php echo set_value('lastname'); ?>" /><br>
 
         <label>username</label><br>
-        <input type="text" name="username" value="" /><br>
+        <input type="text" name="username" value="<?php echo set_value('username'); ?>" /><br>
 
         <label>password</label><br>
-        <input type="password" name="password" value="" /><br>
+        <input type="password" name="password" value="<?php echo set_value('password'); ?>" /><br>
 
         <label>email</label><br>
-        <input type="text" name="email" value="" /><br>
+        <input type="text" name="email" value="<?php echo set_value('email'); ?>" /><br>
 
         <input type="submit" value="Register" /><br>
 
