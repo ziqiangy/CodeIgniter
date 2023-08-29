@@ -32,6 +32,8 @@
             <div class="text-child">            
                 <h1>Login</h1>
 
+                <?php if(isset($err)) echo $err ?>
+
                 <?php echo form_open('user/login') ?>
                 <label for="">Username or Email</label><br>
                 <input type="text" name='username' value=''><br>

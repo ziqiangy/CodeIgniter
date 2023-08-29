@@ -17,7 +17,6 @@ class User extends CI_Controller{
                 {
                     $this->load->view('user/register');
                 }else{
-                    //data is validate and save to database
                     $form_data = $this->input->post();
                     //salt and hash the password before save
                     $salt1 = "qzu$<.";
@@ -46,27 +45,50 @@ class User extends CI_Controller{
     public function login(){
         if($this->input->server('REQUEST_METHOD')==='GET'){
             $this->load->view('user/login');
-        } elseif ($this->input->server('REQUEST_METHOD')==='POST'){
-            $form_data = $this->input->post();
-            $this->load->model("Users");
-            $db_data = $this->Users->searchByUsername($form_data['username']);
-    
-            if($db_data){
-                if($db_data[0]['is_active']==0) die("The user account is closed, please contact admin");
-                $this->validateLogin($form_data,$db_data[0]);
-            }else {
-                $db_data = $this->Users->searchByEmail($form_data['username']);
-                if($db_data[0]['is_active']==0) die("The user account is closed, please contact admin");
-                $db_data ? $this->validateLogin($form_data,$db_data[0]) : die("not find email");
-            }    
         }
-        
-        
+        elseif ($this->input->server('REQUEST_METHOD')==='POST')
+        {
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $this->load->model("Users");
+
+            if($this->Users->searchByUsername($username)||$this->Users->searchByEmail($username)){
+                $this->Users->searchByUsername($username) ? [$data] = $this->Users->searchByUsername($username) : [$data] = $this->Users->searchByEmail($username);
+                if($data['is_active']==1) {
+                    $formPass = $this->hashPass($password);
+                    $dbPass = $data['password'];
+                    if($dbPass==$formPass){
+                        session_start();
+                        $_SESSION['user_id']=$data['id'];
+                        $_SESSION['username']=$data['username'];
+                        redirect('user/profile','refresh');
+                    }
+                    else{
+                        $this->load->view('user/login',array('err'=>'Wrong password, please re-enter your password'));
+                    }
+                } 
+                else{
+                    $this->load->view('user/login',array('err'=>'The user account is closed, please contact admin'));
+                }
+            }
+            else{
+                $this->load->view('user/login',array('err'=>'username or email not exist'));
+            }  
+        }
     }
+
+    public function hashPass($formPass){
+        $salt1 = "qzu$<.";
+        $salt2 = "p1g!~*";
+        $pass = $formPass;
+        $hashPass = hash("ripemd128","$salt1$pass$salt2");
+        return $hashPass;
+    }
+
 
     public function profile(){
         session_start();
-        if(!$_SESSION['user_id']) die("not authorized user, login first");
+        if(!$_SESSION['user_id']) redirect('/user/login', 'refresh');
         $this->load->model("Users");
         $user_data = $this->Users->searchCurrentUser($_SESSION['user_id']);
         // print_r($user_data);
@@ -148,20 +170,5 @@ class User extends CI_Controller{
     }
 
 
-    /**
-     * a function for login, input formdata and dbData[0]~ the only one row search user result
-     */
-    public function validateLogin($formData,$dbData){
-        $salt1 = "qzu$<.";
-        $salt2 = "p1g!~*";
-        $formPassword = $formData['password'];
-        $formPassword = hash("ripemd128","$salt1$formPassword$salt2");
-        if($formPassword == $dbData['password']){
-            session_start();
-            $_SESSION['user_id']=$dbData['id'];
-            $_SESSION['username']=$dbData['username'];
-
-            redirect('user/profile','refresh');
-        }else{die("username or password incorrect");}
-    }
+    
 }
