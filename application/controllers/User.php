@@ -18,21 +18,17 @@ class User extends CI_Controller{
                     $this->load->view('user/register');
                 }else{
                     $form_data = $this->input->post();
-                    //salt and hash the password before save
-                    $salt1 = "qzu$<.";
-                    $salt2 = "p1g!~*";
-                    $tempPass = $form_data['password'];
-                    $form_data['password'] = hash("ripemd128","$salt1$tempPass$salt2");
-                    // print_r($form_data);
+                    $form_data['password'] = $this->hashPass($form_data['password']);
                     $this->load->model("Users");
                     $this->Users->insertOneUser($form_data);
-                    //load loginView, if we use load->view here, the url not going to change to user/loginView
-                    // $this->load->view('user/loginView');
                     redirect('/user/login', 'refresh');
                 }
          }       
     }
 
+    /**
+     * tool
+     */
     public function email_check($str){
         if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$str)){
             $this->form_validation->set_message('email_check', '%s is too simple');
@@ -77,6 +73,9 @@ class User extends CI_Controller{
         }
     }
 
+    /**
+     * tool
+     */
     public function hashPass($formPass){
         $salt1 = "qzu$<.";
         $salt2 = "p1g!~*";
@@ -90,9 +89,8 @@ class User extends CI_Controller{
         session_start();
         if(!$_SESSION['user_id']) redirect('/user/login', 'refresh');
         $this->load->model("Users");
-        $user_data = $this->Users->searchCurrentUser($_SESSION['user_id']);
-        // print_r($user_data);
-        $this->load->view('user/profile',$user_data[0]);
+        [$data] = $this->Users->searchCurrentUser($_SESSION['user_id']);
+        $this->load->view('user/profile',$data);
     }
 
     public function forgetPassword(){
@@ -102,8 +100,8 @@ class User extends CI_Controller{
             $form_data = $this->input->post();
             // var_dump($form_data['email']);
             $this->load->model("Users");
-            $res = $this->Users->searchByEmail($form_data['email']);
-            $this->load->view("user/newPassword",array('id'=>$res[0]['id']));    
+            [$res] = $this->Users->searchByEmail($form_data['email']);
+            $this->load->view("user/newPassword",array('id'=>$res['id']));    
         }
         
     }
