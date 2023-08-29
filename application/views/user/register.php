@@ -67,14 +67,7 @@
                     <li>At least one special character, #?!@$%^&*-~</li>
                 </ul>
 
-
-
-                <p>Already have a account?
-
-                <a title="Go Login" href='<?php echo base_url ('index.php/user/loginView'); ?>'>Go Login</a>
-
-
-
+                <?php echo anchor('user/login','Already have a account? Go Login') ?>
                             
             </div>
         </div>

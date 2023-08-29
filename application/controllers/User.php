@@ -29,7 +29,7 @@ class User extends CI_Controller{
                     $this->Users->insertOneUser($form_data);
                     //load loginView, if we use load->view here, the url not going to change to user/loginView
                     // $this->load->view('user/loginView');
-                    redirect('/user/loginView', 'refresh');
+                    redirect('/user/login', 'refresh');
                 }
          }       
     }
@@ -43,71 +43,75 @@ class User extends CI_Controller{
         }
     }
 
-    public function loginView(){
-        $this->load->view('user/loginView');
-    }
-
     public function login(){
-        $form_data = $this->input->post();
-        $this->load->model("Users");
-        $db_data = $this->Users->searchByUsername($form_data['username']);
-
-        if($db_data){
-            if($db_data[0]['is_active']==0) die("The user account is closed, please contact admin");
-            $this->validateLogin($form_data,$db_data[0]);
-        }else {
-            $db_data = $this->Users->searchByEmail($form_data['username']);
-            if($db_data[0]['is_active']==0) die("The user account is closed, please contact admin");
-            $db_data ? $this->validateLogin($form_data,$db_data[0]) : die("not find email");
+        if($this->input->server('REQUEST_METHOD')==='GET'){
+            $this->load->view('user/login');
+        } elseif ($this->input->server('REQUEST_METHOD')==='POST'){
+            $form_data = $this->input->post();
+            $this->load->model("Users");
+            $db_data = $this->Users->searchByUsername($form_data['username']);
+    
+            if($db_data){
+                if($db_data[0]['is_active']==0) die("The user account is closed, please contact admin");
+                $this->validateLogin($form_data,$db_data[0]);
+            }else {
+                $db_data = $this->Users->searchByEmail($form_data['username']);
+                if($db_data[0]['is_active']==0) die("The user account is closed, please contact admin");
+                $db_data ? $this->validateLogin($form_data,$db_data[0]) : die("not find email");
+            }    
         }
+        
         
     }
 
-    public function profileView(){
+    public function profile(){
         session_start();
         if(!$_SESSION['user_id']) die("not authorized user, login first");
         $this->load->model("Users");
         $user_data = $this->Users->searchCurrentUser($_SESSION['user_id']);
         // print_r($user_data);
-        $this->load->view('user/profileView',$user_data[0]);
-    }
-
-    public function forgetPasswordView(){
-        $this->load->view('user/forgetPasswordView');
-    }
-
-    public function newPasswordEnterView(){
-        $this->load->view('user/newPasswordEnterView');
+        $this->load->view('user/profile',$user_data[0]);
     }
 
     public function forgetPassword(){
-        $form_data = $this->input->post();
-        // var_dump($form_data['email']);
-        $this->load->model("Users");
-        $res = $this->Users->searchByEmail($form_data['email']);
-        $this->load->view("User/newPasswordEnterView",array('id'=>$res[0]['id']));
+        if($this->input->server('REQUEST_METHOD')==='GET'){
+            $this->load->view('user/forgetPassword');
+        } elseif ($this->input->server('REQUEST_METHOD')==='POST') {
+            $form_data = $this->input->post();
+            // var_dump($form_data['email']);
+            $this->load->model("Users");
+            $res = $this->Users->searchByEmail($form_data['email']);
+            $this->load->view("user/newPassword",array('id'=>$res[0]['id']));    
+        }
+        
     }
 
     public function newPassword(){
-        $form_data = $this->input->post();
-        // var_dump($form_data['password']);
+        if($this->input->server("REQUEST_METHOD")==="GET"){
+            $this->load->view('user/newPassword');
+        } elseif ($this->input->server('REQUEST_METHOD')==="POST"){
+            $form_data = $this->input->post();
+            // var_dump($form_data['password']);
+    
+            if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$form_data['password'])) die("password too weak");
+    
+    
+            $salt1 = "qzu$<.";
+            $salt2 = "p1g!~*";
+            $tempPass = $form_data['password'];
+            $form_data['password'] = hash("ripemd128","$salt1$tempPass$salt2");
+    
+            $id = $form_data['id'];
+            $data = array(
+                'password'=>$form_data['password']
+            );
+            $this->load->model("Users");
+            $this->Users->updateCurrentUserFields($id,$data);
+            echo "password reset success <br>";
+            redirect('/user/login', 'refresh');
+    
+        }
 
-        if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$form_data['password'])) die("password too weak");
-
-
-        $salt1 = "qzu$<.";
-        $salt2 = "p1g!~*";
-        $tempPass = $form_data['password'];
-        $form_data['password'] = hash("ripemd128","$salt1$tempPass$salt2");
-
-        $id = $form_data['id'];
-        $data = array(
-            'password'=>$form_data['password']
-        );
-        $this->load->model("Users");
-        $this->Users->updateCurrentUserFields($id,$data);
-        echo "password reset success <br>";
-        $this->loginView();
     }
 
     public function update(){
@@ -122,14 +126,14 @@ class User extends CI_Controller{
 
         $this->load->model('Users');
         $this->Users->updateCurrentUserFields($id,$data);
-        $this->profileView();
+        $this->profile();
     }
 
     public function logout(){
         session_start();
         session_destroy();
         echo "I am logged out, please login again";
-        $this->loginView();
+        redirect('user/login','refresh');
         // print_r($_session['user_id']);
     }
 
@@ -156,9 +160,8 @@ class User extends CI_Controller{
             session_start();
             $_SESSION['user_id']=$dbData['id'];
             $_SESSION['username']=$dbData['username'];
-            echo "welcome ".$_SESSION['username'];
-            echo "<br>";
-            echo "<a href='".base_url('index.php/user/profileView')."'>Go Profile View</a>";
+
+            redirect('user/profile','refresh');
         }else{die("username or password incorrect");}
     }
 }
