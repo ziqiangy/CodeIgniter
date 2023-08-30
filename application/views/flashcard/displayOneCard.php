@@ -131,11 +131,15 @@
 
                     
                     <div class="wordlist-footer">
-                        <img id="add-word" style="height:30px;" src="/pictures/yjfw/words/plus-circle-solid.svg" alt="">
-                        <img id="remove-word" style="height:30px;" src="/pictures/yjfw/words/minus-circle-solid.svg" alt="">
-                        <img id="edit-word" style="height:30px;" src="/pictures/yjfw/words/edit-solid.svg" alt="">
-                        <img id="list-wordlist" style="height:30px;" src="/pictures/yjfw/words/list-alt-regular.svg" alt="">
-                        <div id="display-wordlist-index" style="height:30px; font-size:25px;" class="wordlist-index-item">1</div>
+                    <?php echo anchor("flashcard/insertView","Add",array('style'=>'height:30px;')); ?>
+                    
+                    <?php echo anchor("flashcard/delete/".strval($id),"Delete",array('style'=>'height:30px;')); ?>
+                    
+                    <?php echo anchor("flashcard/updateView/".strval($id),"Update",array('style'=>'height:30px;')); ?>
+                        
+
+                        <?php echo anchor("flashcard/displayAllList","List",array('style'=>'height:30px;')); ?>
+                        <div id="display-wordlist-index" style="height:30px; font-size:25px;" class="wordlist-index-item"><?php echo strval($offset+1)?></div>
                     </div>
                 </div>            
             </div>
