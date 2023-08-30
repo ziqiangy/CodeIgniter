@@ -1,13 +1,10 @@
 
 <style>
-    body{
-        margin:0;
-    }
     .box-father{
         /* outline here not working */
         /* outline:10px solid black; */
         
-        height:100vh;
+        height:calc(100vh - 50px);
         position:relative;
         /* background-color:#fff2ab; */
     }

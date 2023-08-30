@@ -4,6 +4,7 @@ class User extends CI_Controller{
     public function register(){
 
         if ($this->input->server('REQUEST_METHOD') === 'GET') {
+            $this->load->view('templates/header');
             $this->load->view('user/register');
          } elseif ($this->input->server('REQUEST_METHOD') === 'POST') {
             //set validation rules;
@@ -40,6 +41,7 @@ class User extends CI_Controller{
 
     public function login(){
         if($this->input->server('REQUEST_METHOD')==='GET'){
+            $this->load->view('templates/header');
             $this->load->view('user/login');
         }
         elseif ($this->input->server('REQUEST_METHOD')==='POST')
@@ -94,11 +96,14 @@ class User extends CI_Controller{
         };
         $this->load->model("Users");
         [$data] = $this->Users->searchCurrentUser($_SESSION['user_id']);
+
+        $this->load->view('templates/header');
         $this->load->view('user/profile',$data);
     }
 
     public function forgetPassword(){
         if($this->input->server('REQUEST_METHOD')==='GET'){
+            $this->load->view('templates/header');
             $this->load->view('user/forgetPassword');
         } elseif ($this->input->server('REQUEST_METHOD')==='POST') {
             $form_data = $this->input->post();
@@ -115,6 +120,7 @@ class User extends CI_Controller{
 
     public function newPassword(){
         if($this->input->server("REQUEST_METHOD")==="GET"){
+            $this->load->view('templates/header');
             $this->load->view('user/newPassword');
         } elseif ($this->input->server('REQUEST_METHOD')==="POST"){
             $form_data = $this->input->post();

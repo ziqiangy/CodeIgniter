@@ -3,9 +3,14 @@ class Flashcard extends CI_Controller{
     function __construct(){
         parent::__construct();
         session_start();
-        if(!isset($_SESSION["user_id"])) die("not authorized user, login first");
+        if(!isset($_SESSION['user_id'])) {
+            echo "Not authorized user<br>";
+            echo anchor('user/login','Go Login');
+            exit;
+        };
     }
     public function insertView(){
+        $this->load->view('templates/header');
         $this->load->view('flashcard/insertView');
     }
     public function insertOne(){
@@ -15,7 +20,7 @@ class Flashcard extends CI_Controller{
         $this->flashcards->insertOne($data);
         $this->displayAllList();
     }
-    public function oneCardView($offset){
+    public function oneCardView($offset = 0){
 
         $this->load->model('flashcards');
         $arr = $this->flashcards->displayOneOffset($offset);
@@ -25,7 +30,7 @@ class Flashcard extends CI_Controller{
         $data["count"] = $countAll;
 
         // print_r($data);
-
+        $this->load->view('templates/header');
         $this->load->view('flashcard/displayOneCard',$data);
     }
 
@@ -33,12 +38,14 @@ class Flashcard extends CI_Controller{
         $this->load->model("flashcards");
         $data = $this->flashcards->displayAll();
         // var_dump(array("data"=>$data));
+        $this->load->view('templates/header');
         $this->load->view("flashcard/displayCardList",array("data"=>$data));
     }
     public function updateView($id){
         $this->load->model("flashcards");
         $res = $this->flashcards->displayOne($id);
         [$data] = $res;
+        $this->load->view('templates/header');
         $this->load->view('flashcard/updateView',$data);
     }
     public function updateOne(){
