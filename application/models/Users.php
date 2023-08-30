@@ -40,4 +40,9 @@ class Users extends CI_Model{
         $data = array('is_active'=>0);
         $this->db->update('users',$data);
     }
+
+    public function userIsActive($data){
+        [$data] = $this->db->select("*")->where('email',$data)->limit(1)->get('users')->result_array();
+        return $data['is_active'];
+    }
 }

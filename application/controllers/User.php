@@ -109,13 +109,17 @@ class User extends CI_Controller{
         } elseif ($this->input->server('REQUEST_METHOD')==='POST') {
             $form_data = $this->input->post();
             $this->load->model("Users");
-            if($this->Users->searchByEmail($form_data['email'])){
+
+            if(!$this->Users->searchByEmail($form_data['email'])){
+                $this->load->view('templates/header');
+                $this->load->view("user/forgetPassword",array('err'=>'not find this user, try again'));
+            }elseif(!$this->Users->userIsActive($form_data['email'])){
+                $this->load->view('templates/header');
+                $this->load->view("user/forgetPassword",array('err'=>'This user is not disabled, contact admin'));
+            }else{
                 [$res] = $this->Users->searchByEmail($form_data['email']);
                 $this->load->view('templates/header');
                 $this->load->view("user/newPassword",array('id'=>$res["id"])); 
-            } else {
-                $this->load->view('templates/header');
-                $this->load->view("user/forgetPassword",array('err'=>'not find this user, try again'));
             }
         }
         
