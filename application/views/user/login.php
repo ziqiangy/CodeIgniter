@@ -29,6 +29,7 @@
             <div class="text-child">            
                 <h1>Login</h1>
 
+                <?php if(isset($_SESSION['auth'])) echo $_SESSION['auth'] ?>
                 <?php if(isset($err)) echo $err ?>
 
                 <?php echo form_open('user/login') ?>

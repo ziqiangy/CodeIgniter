@@ -56,7 +56,6 @@ class User extends CI_Controller{
                     $formPass = $this->hashPass($password);
                     $dbPass = $data['password'];
                     if($dbPass==$formPass){
-                        session_start();
                         $_SESSION['user_id']=$data['id'];
                         $_SESSION['username']=$data['username'];
                         redirect('user/profile','refresh');
@@ -88,7 +87,6 @@ class User extends CI_Controller{
 
 
     public function profile(){
-        session_start();
         if(!isset($_SESSION['user_id'])) {
             echo "Not authorized user<br>";
             echo anchor('user/login','Go Login');
@@ -154,14 +152,12 @@ class User extends CI_Controller{
     }
 
     public function logout(){
-        session_start();
         session_destroy();
         echo "I am logged out<br>";
         echo anchor('user/login','Go Login Again');
     }
 
     public function deactivate(){
-        session_start();
         $id = $_SESSION["user_id"];
         session_destroy();
         $this->load->model("Users");

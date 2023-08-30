@@ -3,10 +3,9 @@ class Flashcard extends CI_Controller{
     public $user_id;
     function __construct(){
         parent::__construct();
-        session_start();
         if(!isset($_SESSION['user_id'])) {
-            echo "Not authorized user<br>";
-            echo anchor('user/login','Go Login');
+            $this->session->set_flashdata("auth",'Not authorized user, login first');
+            redirect('user/login');
             exit;
         };
         $this->user_id = $_SESSION['user_id'];
