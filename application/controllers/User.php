@@ -112,7 +112,7 @@ class User extends CI_Controller{
             if($this->Users->searchByEmail($form_data['email'])){
                 [$res] = $this->Users->searchByEmail($form_data['email']);
                 $this->load->view('templates/header');
-                $this->load->view("user/newPassword",array('id'=>$res['id'])); 
+                $this->load->view("user/newPassword",array('id'=>$res["id"])); 
             } else {
                 $this->load->view('templates/header');
                 $this->load->view("user/forgetPassword",array('err'=>'not find this user, try again'));
@@ -121,26 +121,33 @@ class User extends CI_Controller{
         
     }
 
-    public function newPassword(){
+    public function newPassword($id = NULL){
         if($this->input->server("REQUEST_METHOD")==="GET"){
             $this->load->view('templates/header');
-            $this->load->view('user/newPassword');
+            $this->load->view('user/newPassword',array('id'=>$id));
         } elseif ($this->input->server('REQUEST_METHOD')==="POST"){
             $form_data = $this->input->post();
             if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$form_data['password'])){
-                redirect('user/forgetPassword');
+                $this->session->set_flashdata("auth",'password is not strong enough.');
+                redirect('user/newPassword/'.strval($form_data['id']));
+                //remember redirect is a get request, view with data is a post request
 
-                //not able to load view, don't know why
+
+                //not able to load any view here, conflict when using load view here.
+                // var_dump($this);
                 // $this->load->view('user/newPassword',array('err'=>'password is not strong enough'));
+                
                 exit;
+            }else{
+                $password = $this->hashPass($form_data['password']);
+                $id = $form_data['id'];
+                $this->load->model("Users");
+                $this->Users->updateCurrentUserFields($id,array('password'=>$password));
+                $this->session->set_flashdata("auth",'password reset successfully');
+                redirect('user/login');
             }
 
-            $password = $this->hashPass($form_data['password']);
-            $id = $form_data['id'];
-            $this->load->model("Users");
-            $this->Users->updateCurrentUserFields($id,array('password'=>$password));
-            $this->session->set_flashdata("auth",'password reset successfully');
-            redirect('user/login');
+            
         }
 
     }

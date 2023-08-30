@@ -26,7 +26,7 @@
     <div class="box-child">
         <div class="text-father">
             <div class="text-child"> 
-                <?php if(isset($err)) echo $err ?>
+                <?php if(isset($_SESSION['auth'])) echo $_SESSION['auth'] ?>
                     <p>please enter your new Password:</p>
                     <?php echo form_open("user/newPassword"); ?>
                     <input type="password" name="password" value="">
