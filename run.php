@@ -122,13 +122,19 @@
  * array push
  */
 
- $data = array(
-  'id'=>2,
-  'definition'=>'apple'
- );
+//  $data = array(
+//   'id'=>2,
+//   'definition'=>'apple'
+//  );
 
- $fin = array_merge($data,array("user_id"=>3));
- print_r($fin);
+//  $fin = array_merge($data,array("user_id"=>3));
+//  print_r($fin);
 
 
+$str="PeterBond";
+$res = preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$str);
+echo $res;
 
+
+$resp = preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$str);
+echo $resp;

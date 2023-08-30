@@ -61,14 +61,17 @@ class User extends CI_Controller{
                         redirect('user/profile','refresh');
                     }
                     else{
+                        $this->load->view('templates/header');
                         $this->load->view('user/login',array('err'=>'Wrong password, please re-enter your password'));
                     }
                 } 
                 else{
+                    $this->load->view('templates/header');
                     $this->load->view('user/login',array('err'=>'The user account is closed, please contact admin'));
                 }
             }
             else{
+                $this->load->view('templates/header');
                 $this->load->view('user/login',array('err'=>'username or email not exist'));
             }  
         }
@@ -88,8 +91,8 @@ class User extends CI_Controller{
 
     public function profile(){
         if(!isset($_SESSION['user_id'])) {
-            echo "Not authorized user<br>";
-            echo anchor('user/login','Go Login');
+            $this->session->set_flashdata("auth",'Not authorized user, login first');
+            redirect('user/login');
             exit;
         };
         $this->load->model("Users");
@@ -108,8 +111,10 @@ class User extends CI_Controller{
             $this->load->model("Users");
             if($this->Users->searchByEmail($form_data['email'])){
                 [$res] = $this->Users->searchByEmail($form_data['email']);
+                $this->load->view('templates/header');
                 $this->load->view("user/newPassword",array('id'=>$res['id'])); 
             } else {
+                $this->load->view('templates/header');
                 $this->load->view("user/forgetPassword",array('err'=>'not find this user, try again'));
             }
         }
@@ -123,15 +128,19 @@ class User extends CI_Controller{
         } elseif ($this->input->server('REQUEST_METHOD')==="POST"){
             $form_data = $this->input->post();
             if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-~]).{8,}$/",$form_data['password'])){
-                $this->load->view('user/newPassword',array('err'=>'password is not strong enough'));
+                redirect('user/forgetPassword');
+
+                //not able to load view, don't know why
+                // $this->load->view('user/newPassword',array('err'=>'password is not strong enough'));
+                exit;
             }
 
             $password = $this->hashPass($form_data['password']);
             $id = $form_data['id'];
             $this->load->model("Users");
             $this->Users->updateCurrentUserFields($id,array('password'=>$password));
-            echo "password reset successfully <br>";
-            echo anchor('user/login','Go Login Again');
+            $this->session->set_flashdata("auth",'password reset successfully');
+            redirect('user/login');
         }
 
     }
@@ -153,8 +162,7 @@ class User extends CI_Controller{
 
     public function logout(){
         session_destroy();
-        echo "I am logged out<br>";
-        echo anchor('user/login','Go Login Again');
+        redirect('user/login');
     }
 
     public function deactivate(){
@@ -162,8 +170,10 @@ class User extends CI_Controller{
         session_destroy();
         $this->load->model("Users");
         $this->Users->deactivateUser($id);
-        echo "User deactiveated, please contact admin to activate again or register<br>";
-        echo anchor('user/register','Go Register Again');
+        session_destroy();
+        redirect('user/register');
+        // echo "User deactiveated, please contact admin to activate again or register<br>";
+        
 
     }
 
