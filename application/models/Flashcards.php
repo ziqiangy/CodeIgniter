@@ -14,18 +14,18 @@ class Flashcards extends CI_Model{
 
     }
 
-    public function displayOneOffset($offset){
-        $res = $this->db->get('flashcards',1,$offset)->result_array();
+    public function displayOneOffset($offset, $user_id){
+        $res = $this->db->where('user_id',$user_id)->get('flashcards',1,$offset)->result_array();
         return $res;
     }
 
-    public function countAll(){
-        $res = $this->db->count_all_results('flashcards');
+    public function countAll($user_id){
+        $res = $this->db->where('user_id',$user_id)->count_all_results('flashcards');
         return $res;
     }
 
-    public function displayAll(){
-        $res = $this->db->get('flashcards')->result_array();
+    public function displayAll($user_id){
+        $res = $this->db->where('user_id',$user_id)->get('flashcards')->result_array();
         return $res;
     }
 

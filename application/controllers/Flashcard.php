@@ -1,5 +1,6 @@
 <?php
 class Flashcard extends CI_Controller{
+    public $user_id;
     function __construct(){
         parent::__construct();
         session_start();
@@ -8,6 +9,7 @@ class Flashcard extends CI_Controller{
             echo anchor('user/login','Go Login');
             exit;
         };
+        $this->user_id = $_SESSION['user_id'];
     }
     public function insertView(){
         $this->load->view('templates/header');
@@ -15,7 +17,7 @@ class Flashcard extends CI_Controller{
     }
     public function insertOne(){
         $form_data = $this->input->post();
-        $data = array_merge($form_data,array("user_id"=>$_SESSION["user_id"]));
+        $data = array_merge($form_data,array("user_id"=>$this->user_id));
         $this->load->model("flashcards");
         $this->flashcards->insertOne($data);
         $this->displayAllList();
@@ -23,20 +25,19 @@ class Flashcard extends CI_Controller{
     public function oneCardView($offset = 0){
 
         $this->load->model('flashcards');
-        $arr = $this->flashcards->displayOneOffset($offset);
-        $countAll = $this->flashcards->countAll();
+        $arr = $this->flashcards->displayOneOffset($offset,$this->user_id);
+        $countAll = $this->flashcards->countAll($this->user_id);
         [$data] = $arr;
         $data["offset"] = $offset;
         $data["count"] = $countAll;
 
-        // print_r($data);
         $this->load->view('templates/header');
         $this->load->view('flashcard/displayOneCard',$data);
     }
 
     public function displayAllList(){
         $this->load->model("flashcards");
-        $data = $this->flashcards->displayAll();
+        $data = $this->flashcards->displayAll($this->user_id);
         // var_dump(array("data"=>$data));
         $this->load->view('templates/header');
         $this->load->view("flashcard/displayCardList",array("data"=>$data));

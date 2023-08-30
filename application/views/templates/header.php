@@ -36,6 +36,7 @@
 <div class="topnav">
   <?php echo anchor("flashcard/oneCardView","Home"); ?>
   <?php echo anchor("flashcard/displayAllList","List"); ?>
+  <?php echo anchor("flashcard/insertView","Insert"); ?>
 
   <?php if(isset($_SESSION["user_id"])){
     echo anchor("user/profile",$_SESSION["username"],array('class' => 'split'));
