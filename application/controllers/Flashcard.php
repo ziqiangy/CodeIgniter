@@ -11,15 +11,19 @@ class Flashcard extends CI_Controller{
         $this->user_id = $_SESSION['user_id'];
     }
     public function insertView(){
+        $this->load->model("FlashCategories");
+        $res_fcs = $this->FlashCategories->list($this->user_id);
         $this->load->view('templates/header');
-        $this->load->view('flashcard/insertView');
+        $this->load->view('flashcard/insertView',array("data"=>$res_fcs));
     }
     public function insertOne(){
         $form_data = $this->input->post();
         $data = array_merge($form_data,array("user_id"=>$this->user_id));
         $this->load->model("flashcards");
         $this->flashcards->insertOne($data);
-        $this->displayAllList();
+        // $this->displayAllList();
+        redirect("flashcard/displayAllList");
+
     }
     public function oneCardView($offset = 0){
 
@@ -42,38 +46,46 @@ class Flashcard extends CI_Controller{
         $this->load->view("flashcard/displayCardList",array("data"=>$data));
     }
     public function updateView($id){
+        $this->load->model("FlashCategories");
+        $res_fcs = $this->FlashCategories->list($this->user_id);
+
         $this->load->model("flashcards");
         $res = $this->flashcards->displayOne($id);
         [$data] = $res;
+
+        $pack = array(
+            "user_data"=>$data,
+            "fcs_data"=>$res_fcs
+        );
         $this->load->view('templates/header');
-        $this->load->view('flashcard/updateView',$data);
+        $this->load->view('flashcard/updateView',$pack);
     }
     public function updateOne(){
         $form_data = $this->input->post();
-        // print_r($form_data);
         $id = $form_data["id"];
-        $data = array(
-            "term"=>$form_data["term"],
-            "definition"=>$form_data["definition"],
-            "update_time"=>date('Y-m-d H:i:s')
-        );
-        // print_r($id);
-        // print_r($data);
+        $date = array("update_time"=>date('Y-m-d H:i:s'));
+        $data = array_merge($form_data,$date);
+        
         $this->load->model("flashcards");
         $this->flashcards->updateOne($id,$data);
-        $this->displayAllList();
+        // $this->displayAllList();
+        redirect("flashcard/displayAllList");
     }
 
     public function disable($id){
         $this->load->model("flashcards");
         $this->flashcards->disable($id);
-        $this->displayAllList();
+        // $this->displayAllList();
+        redirect("flashcard/displayAllList");
+
 
     }
 
     public function delete($id){
         $this->load->model("flashcards");
         $this->flashcards->deleteOne($id);
-        $this->displayAllList();
+        // $this->displayAllList();
+        redirect("flashcard/displayAllList");
+
     }
 }
