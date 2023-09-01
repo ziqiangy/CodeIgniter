@@ -34,9 +34,11 @@
 
 
 <div class="topnav">
-  <?php echo anchor("flashcard/oneCardView","Home"); ?>
-  <?php echo anchor("flashcard/displayAllList","List"); ?>
-  <?php echo anchor("flashcard/insertView","Insert"); ?>
+  <?php echo anchor("flashcard/oneCardView","Flashcard Study"); ?>
+  <?php echo anchor("flashcard/displayAllList","List Flashcards"); ?>
+  <?php echo anchor("flashcard/insertView","Insert Flashcard"); ?>
+  <?php echo anchor("flashcate/list","Show My Categories"); ?>
+  <?php echo anchor("flashcate/insert","Insert Category"); ?>
 
   <?php if(isset($_SESSION["user_id"])){
     echo anchor("user/profile",$_SESSION["username"],array('class' => 'split'));

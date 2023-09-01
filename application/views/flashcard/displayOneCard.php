@@ -17,7 +17,7 @@
     margin:0 auto;
     border: 3px solid black;
     background-color:#fff7d1;
-    /* height:120px; */
+    height:120px;
     max-width:500px;
     border-top-left-radius:50px;
     border-top-right-radius:50px;
@@ -26,7 +26,7 @@
 }
 
 .frame{
-    /* text-align: csenter; */
+    /* text-align: center; */
     margin:0 auto;
     height:400px;
     max-width:500px;
@@ -83,9 +83,11 @@
 
 .wordlist-word-board{
     height:280px;
+    overflow-y:auto;
     display:flex;
-    justify-content:center;
-    align-items:center;
+    /* justify-content:center; */
+    /* align-items:center; */
+    /* give child margin:auto to fix the double center overflow problem */
     flex-direction:column;
 
 }
@@ -123,8 +125,8 @@
                         </div>
 
                         <div class="wordlist-word-board">
-                            <div style="font-size:18px;padding:20px;font-weight:600;"><?php echo $term ?></div>
-                            <div id="display-word-trans" style="visibility:hidden;font-size:16px;padding:0 20px;"><?php echo $definition ?></div>
+                            <div id="display-word-def" style="margin:auto;display:flex;font-size:18px;padding:20px;font-weight:600;"><?php echo $term ?></div>
+                            <div id="display-word-trans" style="margin:auto;display:none;font-size:16px;padding:0 20px;"><?php echo nl2br($definition) ?></div>
                             
                         </div>
                     </div>
@@ -150,14 +152,26 @@
 
 <script type="text/javascript">
     let showHideWord = document.getElementById('show-hide-trans');
-    let displayWordDef = document.getElementById('display-word-trans');
+    let displayWordTrans = document.getElementById('display-word-trans');
+    let displayWordDef = document.getElementById('display-word-def');
+    // showHideWord.onclick = () => {        
+    // if(displayWordDef.style.visibility=='visible'){
+    //     displayWordDef.style.visibility='hidden';
+    //     showHideWord.innerText='show definition';
+    // }else{
+    //     displayWordDef.style.visibility='visible';
+    //     showHideWord.innerText='hide definition';
+    // }
+
     showHideWord.onclick = () => {        
-    if(displayWordDef.style.visibility=='visible'){
-        displayWordDef.style.visibility='hidden';
-        showHideWord.innerText='show definition';
+    if(displayWordTrans.style.display=='flex'){
+        displayWordTrans.style.display='none';
+        displayWordDef.style.display='flex';
+        showHideWord.innerText='Show def';
     }else{
-        displayWordDef.style.visibility='visible';
-        showHideWord.innerText='hide definition';
+        displayWordTrans.style.display='flex';
+        displayWordDef.style.display='none';
+        showHideWord.innerText='Show Term';
     }
 }
     
