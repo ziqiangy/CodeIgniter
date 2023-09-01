@@ -154,14 +154,6 @@
     let showHideWord = document.getElementById('show-hide-trans');
     let displayWordTrans = document.getElementById('display-word-trans');
     let displayWordDef = document.getElementById('display-word-def');
-    // showHideWord.onclick = () => {        
-    // if(displayWordDef.style.visibility=='visible'){
-    //     displayWordDef.style.visibility='hidden';
-    //     showHideWord.innerText='show definition';
-    // }else{
-    //     displayWordDef.style.visibility='visible';
-    //     showHideWord.innerText='hide definition';
-    // }
 
     showHideWord.onclick = () => {        
     if(displayWordTrans.style.display=='flex'){
