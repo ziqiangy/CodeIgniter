@@ -5,6 +5,13 @@
     <label for="definition">Definition:</label><br>
     <textarea type="text" name="definition" rows="5" cols="50"><?php echo $user_data["definition"] ?></textarea><br>
     <select name="category_id">
+        <option value="" 
+        <?php  
+        foreach($fcs_data as $d){
+            if($d["id"]==false) echo "selected";
+        }
+        ?>
+        >No Category</option>
         <?php foreach($fcs_data as $d){ ?>
             <option value="<?php echo $d["id"] ?>" <?php if($user_data["category_id"]==$d["id"]) echo"selected";?>><?php echo $d["name"] ?></option>
         <?php } ?>

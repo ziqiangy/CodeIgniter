@@ -6,6 +6,7 @@
     <textarea name="definition" rows="5" cols="50"></textarea><br>
     <label>Flashcard Categories</label>
     <select name="category_id">
+        <option value="">No Category</option>
         <?php foreach($data as $d){ ?>
             <option value="<?php echo $d["id"] ?>"><?php echo $d["name"] ?></option>
         <?php } ?>
