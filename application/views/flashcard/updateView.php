@@ -7,9 +7,7 @@
     <select name="category_id">
         <option value="" 
         <?php  
-        foreach($fcs_data as $d){
-            if($d["id"]==false) echo "selected";
-        }
+        if(empty($user_data["category_id"])) echo "selected";
         ?>
         >No Category</option>
         <?php foreach($fcs_data as $d){ ?>

@@ -18,10 +18,10 @@ class Flashcard extends CI_Controller{
     }
     public function insertOne(){
         $form_data = $this->input->post();
+        $form_data = array_filter($form_data);//remove empty string
         $data = array_merge($form_data,array("user_id"=>$this->user_id));
         $this->load->model("flashcards");
         $this->flashcards->insertOne($data);
-        // $this->displayAllList();
         redirect("flashcard/displayAllList");
 
     }
@@ -62,6 +62,7 @@ class Flashcard extends CI_Controller{
     }
     public function updateOne(){
         $form_data = $this->input->post();
+        $form_data = array_filter($form_data);
         $id = $form_data["id"];
         $date = array("update_time"=>date('Y-m-d H:i:s'));
         $data = array_merge($form_data,$date);
