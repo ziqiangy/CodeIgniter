@@ -4,3 +4,5 @@
 <input type="hidden" name="id" value="<?php echo $id ?>">
 <input type="submit" value="submit">
 </form>
+
+<?php echo anchor("flashcate/delete/".strval($id),"delete") ?>

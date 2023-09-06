@@ -14,4 +14,7 @@ class FlashCategories extends CI_Model{
         $res = $this->db->get_where("flashcard_categories",array('user_id'=>$user_id))->result_array();
         return $res;
     }
+    public function delete($id){
+        $this->db->delete("flashcard_categories",array("id"=>$id));
+    }
 }

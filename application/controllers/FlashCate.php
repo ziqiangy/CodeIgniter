@@ -46,5 +46,9 @@ class FlashCate extends CI_Controller{
         $this->load->view("templates/header");
         $this->load->view("flashcate/list",array("data"=>$res));
     }
+    public function delete($id){
+        $this->FlashCategories->delete($id);
+        redirect("flashcate/list");
+    }
 
 }

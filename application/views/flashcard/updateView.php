@@ -18,6 +18,6 @@
     <input type="submit" value="Update"/>
 
 </form>
-
-<a href=<?php echo base_url("index.php/flashcard/disable/".$user_data["id"]) ?>>disable</a>
-<a href=<?php echo base_url("index.php/flashcard/delete/".$user_data["id"]) ?>>delete</a>
+<?php echo anchor("flashcard/disable/".strval($user_data["id"]),"disable"); ?>
+<br>
+<?php echo anchor("flashcard/delete/".strval($user_data["id"]),"delete"); ?>
