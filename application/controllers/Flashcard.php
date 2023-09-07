@@ -28,7 +28,8 @@ class Flashcard extends CI_Controller{
     public function oneCardView($offset = 0){
 
         $this->load->model('flashcards');
-        $arr = $this->flashcards->displayOneOffset($offset,$this->user_id);
+        // $arr = $this->flashcards->displayOneOffset($offset,$this->user_id);
+        $arr = $this->flashcards->flashWithCateOffset(intval($offset),$this->user_id);
         $countAll = $this->flashcards->countAll($this->user_id);
         [$data] = $arr;
         $data["offset"] = $offset;
@@ -40,10 +41,13 @@ class Flashcard extends CI_Controller{
 
     public function displayAllList(){
         $this->load->model("flashcards");
-        $data = $this->flashcards->displayAll($this->user_id);
-        // var_dump(array("data"=>$data));
+        // $data = $this->flashcards->displayAll($this->user_id);
+        
+        
+        $data_with_cata = $this->flashcards->queryAllFlashWithCate($this->user_id);
+
         $this->load->view('templates/header');
-        $this->load->view("flashcard/displayCardList",array("data"=>$data));
+        $this->load->view("flashcard/displayCardList",array("data"=>$data_with_cata));
     }
     public function updateView($id){
         $this->load->model("FlashCategories");

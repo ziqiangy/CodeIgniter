@@ -133,15 +133,15 @@
 
                     
                     <div class="wordlist-footer">
-                    <?php echo anchor("flashcard/insertView","Add",array('style'=>'height:30px;')); ?>
-                    
-                    <?php echo anchor("flashcard/delete/".strval($id),"Delete",array('style'=>'height:30px;')); ?>
-                    
-                    <?php echo anchor("flashcard/updateView/".strval($id),"Update",array('style'=>'height:30px;')); ?>
+                        <?php echo anchor("flashcard/insertView","Add",array('class'=>'wordlist-index-item;')); ?>
                         
-
-                        <?php echo anchor("flashcard/displayAllList","List",array('style'=>'height:30px;')); ?>
-                        <div id="display-wordlist-index" style="height:30px; font-size:25px;" class="wordlist-index-item"><?php echo strval($offset+1)?></div>
+                        <?php echo anchor("flashcard/delete/".strval($id),"Delete",array('class'=>'wordlist-index-item;')); ?>
+                        
+                        <?php echo anchor("flashcard/updateView/".strval($id),"Update",array('class'=>'wordlist-index-item;')); ?>
+                            
+                        <?php echo anchor("flashcard/displayAllList","List",array('class'=>'wordlist-index-item;')); ?>
+                       
+                        <div id="display-wordlist-index"  class="wordlist-index-item"><?php echo empty($category_name) ? "no Category" : $category_name?></div>
                     </div>
                 </div>            
             </div>
