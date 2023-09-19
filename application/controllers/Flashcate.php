@@ -1,5 +1,5 @@
 <?php
-class FlashCate extends CI_Controller{
+class Flashcate extends CI_Controller{
     public $user_id;
     function __construct(){
         parent::__construct();
