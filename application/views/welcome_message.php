@@ -315,18 +315,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </style>
 <body>
-
     <div class="flex-container">
         <div class="page-header">
             <div class="header-frame">
-			<div class="logo-img"><img  src="/pictures/yjfw/layout/noun-phoenix-384560.png" title="Phoenix by Anton from NounProject.com"></img></div>
+	    <div class="logo-img"><img  src=<?php echo base_url()."/pictures/yjfw/layout/noun-phoenix-384560.png" ?> title="Phoenix by Anton from NounProject.com"></img></div>
                 <div class="logo-text"><span>Welcome To</span></div>
                 <div class="logo-text"><span>PeterYuanCI</span></div>
             </div>
             
         </div>
         <div class="dots">
-            <img style="height:30px;" src="/pictures/yjfw/layout/ellipsis-vertical-solid.svg">
+	    <img style="height:30px;" src=<?php echo base_url()."/pictures/yjfw/layout/ellipsis-vertical-solid.svg" ?>>
         </div>
         <div class="box">
             <div class="frame">
@@ -371,7 +370,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
         <div class="dots">
-            <img style="height:30px;" src="/pictures/yjfw/layout/ellipsis-vertical-solid.svg">
+	    <img style="height:30px;" src=<?php echo base_url()."/pictures/yjfw/layout/ellipsis-vertical-solid.svg" ?>>
         </div>
         <div class="box">
             <div class="frame">
@@ -384,8 +383,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
                 <div id="box-contents" class="box-content">
                     <div class="banner">
-                        <img class="banner-left-arrow" src="/pictures/yjfw/banners/circle-arrow-left-solid.svg">
-                        <img class="banner-right-arrow" src="/pictures/yjfw/banners/circle-arrow-right-solid.svg">
+			<img class="banner-left-arrow" src=<?php echo base_url()."/pictures/yjfw/banners/circle-arrow-left-solid.svg" ?>>
+			<img class="banner-right-arrow" src=<?php echo base_url()."/pictures/yjfw/banners/circle-arrow-right-solid.svg" ?>>
                         <ul>
                             <li class="banner-current-dot"></li>
                             <li></li>
