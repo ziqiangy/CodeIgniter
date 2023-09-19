@@ -1,5 +1,5 @@
 <?php
-class FlashCate extends CI_Controller{
+class Flashcate extends CI_Controller{
     public $user_id;
     function __construct(){
         parent::__construct();
@@ -45,6 +45,10 @@ class FlashCate extends CI_Controller{
         $res = $this->FlashCategories->list($this->user_id);
         $this->load->view("templates/header");
         $this->load->view("flashcate/list",array("data"=>$res));
+    }
+    public function delete($id){
+        $this->FlashCategories->delete($id);
+        redirect("flashcate/list");
     }
 
 }
