@@ -4,7 +4,7 @@ class User extends CI_Controller{
     public function register(){
 
         if ($this->input->server('REQUEST_METHOD') === 'GET') {
-            $this->load->view('templates/header');
+            // $this->load->view('templates/header');
             $this->load->view('user/register');
          } elseif ($this->input->server('REQUEST_METHOD') === 'POST') {
             //set validation rules;
@@ -41,7 +41,7 @@ class User extends CI_Controller{
 
     public function login(){
         if($this->input->server('REQUEST_METHOD')==='GET'){
-            $this->load->view('templates/header');
+            // $this->load->view('templates/header');
             $this->load->view('user/login');
         }
         elseif ($this->input->server('REQUEST_METHOD')==='POST')
@@ -58,7 +58,8 @@ class User extends CI_Controller{
                     if($dbPass==$formPass){
                         $_SESSION['user_id']=$data['id'];
                         $_SESSION['username']=$data['username'];
-                        redirect('user/profile','refresh');
+                        // redirect('user/profile','refresh');
+                        redirect('flashcard/oneCardView','refresh');
                     }
                     else{
                         $this->load->view('templates/header');
