@@ -1,29 +1,33 @@
 <style>
     .box-father{
-        /* outline here not working */
-        /* outline:10px solid black; */
-        
-        height:calc(100vh - 50px);
-        position:relative;
-        /* background-color:#fff2ab; */
+        display:flex;
+        justify-content:center;
     }
-    .box-child{
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        /* width:500px; */
-        /* height:500px; */
+    .box-child{   
+        width:400px;
+        height:500px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
         padding:15px;
+        
+    }
+
+    .h-title{
+        text-align:center;
+    }
+    .text-father{
+        display:flex;
+        justify-content:center;
     }
 </style>
 
 
 <div class="box-father">
     <div class="box-child">
+    <div class="h-title">
+            <h1>Profile</h1>
+        </div>
         <div class="text-father">
             <div class="text-child"> 
     <h3>username: <?php echo $username ?></h3>
@@ -46,11 +50,15 @@
     </fieldset>
     </form>
 
+    <br>
+    <br>
 
     <?php echo form_open("user/logout") ?>
         <input type="submit" value="logout"><br>
     </form>
 
+    <br>
+    <br>
     <?php echo form_open("user/deactivate") ?>
         <input type="submit" value="Close account"><br>
     </form>

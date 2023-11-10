@@ -1,29 +1,33 @@
 <style>
     .box-father{
-        /* outline here not working */
-        /* outline:10px solid black; */
-        
-        height:calc(100vh - 50px);
-        position:relative;
-        /* background-color:#fff2ab; */
+        display:flex;
+        justify-content:center;
     }
-    .box-child{
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        /* width:500px; */
-        /* height:500px; */
+    .box-child{   
+        width:400px;
+        height:300px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
         padding:15px;
+        
+    }
+
+    .h-title{
+        text-align:center;
+    }
+    .text-father{
+        display:flex;
+        justify-content:center;
     }
 </style>
 
 
 <div class="box-father">
     <div class="box-child">
+    <div class="h-title">
+            <h1>Password Reset</h1>
+        </div>
         <div class="text-father">
             <div class="text-child"> 
                 <?php if(isset($_SESSION['auth'])) echo $_SESSION['auth'] ?>
