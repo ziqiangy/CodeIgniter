@@ -38,7 +38,7 @@
                 <label for="term">Term:</label><br>
                     <input type="text" name="term" value="<?php echo $user_data["term"] ?>"/><br>
                     <label for="definition">Definition:</label><br>
-                    <textarea type="text" name="definition" rows="5" cols="50"><?php echo $user_data["definition"] ?></textarea><br>
+                    <textarea type="text" name="definition" rows="5" cols="35"><?php echo $user_data["definition"] ?></textarea><br>
                     <select name="category_id">
                         <option value="" 
                         <?php  

@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 <style>
     .box-father{
         display:flex;
@@ -46,7 +40,7 @@
     <label for="term">Term:</label><br>
     <input type="text" name="term" value=""/><br>
     <label for="definition">Definition:</label><br>
-    <textarea name="definition" rows="5" cols="50"></textarea><br>
+    <textarea name="definition" rows="5" cols="35"></textarea><br>
     <label>Flashcard Categories</label>
     <select name="category_id">
         <option value="">No Category</option>
