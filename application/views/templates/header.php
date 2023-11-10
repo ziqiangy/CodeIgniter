@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Welcome to wordmemo app</title>
+
+	
+</head>
+<body>
+
 <style>
     body{
         margin:0;

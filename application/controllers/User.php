@@ -4,8 +4,9 @@ class User extends CI_Controller{
     public function register(){
 
         if ($this->input->server('REQUEST_METHOD') === 'GET') {
-            // $this->load->view('templates/header');
+            $this->load->view('templates/header');
             $this->load->view('user/register');
+            $this->load->view('templates/footer');
          } elseif ($this->input->server('REQUEST_METHOD') === 'POST') {
             //set validation rules;
             $this->form_validation->set_rules("firstname","Firstname","trim|required|min_length[3]");
@@ -41,8 +42,9 @@ class User extends CI_Controller{
 
     public function login(){
         if($this->input->server('REQUEST_METHOD')==='GET'){
-            // $this->load->view('templates/header');
+            $this->load->view('templates/header');
             $this->load->view('user/login');
+            $this->load->view('templates/footer');
         }
         elseif ($this->input->server('REQUEST_METHOD')==='POST')
         {
