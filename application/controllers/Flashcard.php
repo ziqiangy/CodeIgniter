@@ -93,4 +93,35 @@ class Flashcard extends CI_Controller{
         redirect("flashcard/displayAllList");
 
     }
+
+
+    public function searchByCate(){
+        $this->load->model("FlashCategories");
+        $res_fcs = $this->FlashCategories->list($this->user_id);
+        $this->load->view('templates/header');
+        $this->load->view('flashcard/searchCardList',array("data"=>$res_fcs));
+    }
+
+
+    public function displayCardsByCate(){
+
+        $form_data = $this->input->post();
+        $form_data = array_filter($form_data);
+        $category_id = $form_data["category_id"];
+
+        // echo $category_id;
+        $this->load->model("flashcards");
+        // $data = $this->flashcards->displayAll($this->user_id);
+        
+        
+        $data_with_cata = $this->flashcards->displayWithCateId($this->user_id,$category_id);
+
+        $this->load->model("FlashCategories");
+        $res_fcs = $this->FlashCategories->list($this->user_id);
+
+
+        $this->load->view('templates/header');
+
+        $this->load->view("flashcard/displayCardsByCate",array("data"=>$data_with_cata,"category_id"=>$category_id,"fcs_data"=>$res_fcs));
+    }
 }

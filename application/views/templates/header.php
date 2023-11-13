@@ -49,6 +49,7 @@
   <?php echo anchor("flashcard/insertView","Insert Flashcard"); ?>
   <?php echo anchor("flashcate/list","Show My Categories"); ?>
   <?php echo anchor("flashcate/insert","Insert Category"); ?>
+  <?php echo anchor("flashcard/searchByCate","Search By Category"); ?>
 
   <?php if(isset($_SESSION["user_id"])){
     echo anchor("user/profile",$_SESSION["username"],array('class' => 'split'));

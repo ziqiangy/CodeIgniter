@@ -52,4 +52,11 @@ class Flashcards extends CI_Model{
         $res = $this->db->query($query,array($user_id,$offset))->result_array();
         return $res;
     }
+
+    public function displayWithCateId($user_id,$category_id){
+        $array = array('user_id' => $user_id, 'category_id' => $category_id);
+        $res = $this->db->where($array)->get('flashcards')->result_array();
+        
+        return $res;
+    }
 }
