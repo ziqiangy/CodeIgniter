@@ -22,7 +22,26 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('templates/header');
 		// $this->load->view('home');
-		$this->load->view('user/login');
+
+		if(!isset($_SESSION['user_id'])) {
+			$this->load->view('user/login');
+        } else {
+
+
+		$offset = 0;
+
+		$this->load->model('flashcards');
+
+		$arr = $this->flashcards->flashWithCateOffset(intval($offset),$_SESSION['user_id']);
+        $countAll = $this->flashcards->countAll($_SESSION['user_id']);
+        [$data] = $arr;
+		
+        $data["offset"] = $offset;
+        $data["count"] = $countAll;
+
+        $this->load->view('flashcard/displayOneCard',$data);
+		};
+		
 		$this->load->view('templates/footer');
 	}
 }
