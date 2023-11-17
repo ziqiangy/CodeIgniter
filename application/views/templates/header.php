@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Welcome to wordmemo app</title>
+	
 
+  <title>ZIQIANG YUAN MANAGEMENT APP</title>
+  <link rel="icon" type="image/x-icon" href="/pictures/logo-sq.jpg">
+
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 	
 </head>
 <body>
@@ -60,3 +64,5 @@
   ?>
   
 </div>
+
+<script src=""></script>

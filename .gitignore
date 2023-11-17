@@ -38,3 +38,6 @@ application/config/config.php
 application/config/database.php
 
 migrations-db.php
+
+node_modules/
+package.json

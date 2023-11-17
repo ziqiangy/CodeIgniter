@@ -124,4 +124,9 @@ class Flashcard extends CI_Controller{
 
         $this->load->view("flashcard/displayCardsByCate",array("data"=>$data_with_cata,"category_id"=>$category_id,"fcs_data"=>$res_fcs));
     }
+
+    public function displayMultiInsert(){
+        $this->load->view('templates/header');
+        $this->load->view('flashcard/multiInsert');
+    }
 }
