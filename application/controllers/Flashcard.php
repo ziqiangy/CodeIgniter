@@ -126,7 +126,33 @@ class Flashcard extends CI_Controller{
     }
 
     public function displayMultiInsert(){
+
+        $this->load->model("FlashCategories");
+        $res_fcs = $this->FlashCategories->list($this->user_id);
+        
         $this->load->view('templates/header');
-        $this->load->view('flashcard/multiInsert');
+        $this->load->view('flashcard/multiInsert',array("data"=>$res_fcs));
+    }
+
+    public function insertMulti(){
+        $form_data = $this->input->post();
+        $length = count($form_data["term"]);
+        for($i=0;$i<$length;$i++){
+            $term = $form_data["term"][$i];
+            $def = $form_data["definition"][$i];
+            $cate = $form_data["category_id"][$i];
+
+            $data = array(
+                "term"=>$term,
+                "definition"=>$def,
+                "category_id"=>$cate,
+                "user_id"=>$this->user_id
+            );
+            $this->load->model("flashcards");
+            $this->flashcards->insertOne($data);
+        }
+        
+        redirect("flashcard/displayAllList");
+
     }
 }
