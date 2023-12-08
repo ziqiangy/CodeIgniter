@@ -5,7 +5,7 @@
     }
     .box-child{   
         width:400px;
-        height:300px;
+        height:400px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
