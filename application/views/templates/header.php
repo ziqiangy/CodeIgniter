@@ -55,6 +55,8 @@
   <?php echo anchor("flashcate/insert","Insert Category"); ?>
   <?php echo anchor("flashcard/searchByCate","Search By Category"); ?>
   <?php echo anchor("flashcard/displayMultiInsert","Insert Multi"); ?>
+  <?php echo anchor("quicknote/insert","Insert a Note"); ?>
+  <?php echo anchor("quicknote/list","Show My Notes"); ?>
 
   <?php if(isset($_SESSION["user_id"])){
     echo anchor("user/profile",$_SESSION["username"],array('class' => 'split'));
