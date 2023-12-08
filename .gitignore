@@ -39,3 +39,5 @@ application/config/database.php
 migrations-db.php
 
 node_modules/
+
+package-lock.json
