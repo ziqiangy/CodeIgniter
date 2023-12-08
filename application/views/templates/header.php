@@ -140,6 +140,16 @@
   </div> 
 
 
+  <div class="dropdown">
+    <button class="dropbtn">Reading List
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    <?php echo anchor("Readinglist/insert","Insert a Book"); ?>
+  <?php echo anchor("Readinglist/list","Show My Books"); ?>
+    </div>
+  </div> 
+
   
 
 
