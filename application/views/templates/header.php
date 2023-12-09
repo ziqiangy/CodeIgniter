@@ -150,6 +150,16 @@
     </div>
   </div> 
 
+  <div class="dropdown">
+    <button class="dropbtn">Recipe List
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    <?php echo anchor("Recipelist/insert","Insert a Recipe"); ?>
+  <?php echo anchor("Recipelist/list","Show My Recipes List"); ?>
+    </div>
+  </div>
+
   
 
 
