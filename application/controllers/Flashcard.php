@@ -136,6 +136,7 @@ class Flashcard extends CI_Controller{
 
     public function insertMulti(){
         $form_data = $this->input->post();
+        
         $length = count($form_data["term"]);
         for($i=0;$i<$length;$i++){
             $term = $form_data["term"][$i];
@@ -148,6 +149,8 @@ class Flashcard extends CI_Controller{
                 "category_id"=>$cate,
                 "user_id"=>$this->user_id
             );
+
+            $data = array_filter($data);//remove empty string
             $this->load->model("flashcards");
             $this->flashcards->insertOne($data);
         }
