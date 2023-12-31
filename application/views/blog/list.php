@@ -26,18 +26,18 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Notes list</h1>
+            <h1>Blog list</h1>
         </div>
         <div class="text-father">
             <div class="text-child">            
             <table>
                 <tr>
-                    <th>Recipe list</th>    
+                    <th>Blog list</th>    
                 </tr>
     
                 <?php foreach($data as $d) { ?>            
                 <tr class="">                
-                    <td><?php echo anchor("Recipelist/update/".$d['id'],$d['name']) ?></td>                            
+                    <td><?php echo anchor("blog/update/".$d['id'],$d['title']) ?></td>                            
                 </tr>
                 <?php } ?>
             </table>        

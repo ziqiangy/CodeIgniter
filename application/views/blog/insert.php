@@ -5,7 +5,7 @@
     }
     .box-child{   
         width:400px;
-        height:300px;
+        height:400px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -26,22 +26,22 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Notes list</h1>
+            <h1>Insert a Blog</h1>
         </div>
         <div class="text-father">
             <div class="text-child">            
-            <table>
-                <tr>
-                    <th>Recipe list</th>    
-                </tr>
-    
-                <?php foreach($data as $d) { ?>            
-                <tr class="">                
-                    <td><?php echo anchor("Recipelist/update/".$d['id'],$d['name']) ?></td>                            
-                </tr>
-                <?php } ?>
-            </table>        
+                <?php echo form_open("blog/insert") ?>
+                    <label for="title">Blog title:</label><br>
+                    <input type="text" name="title" value=""><br>
+                    <label for="content">Blog detail:</label><br>
+                    <textarea id="content" name="content" rows="10" cols="35"></textarea><br>
+                    <label for="date">Blog date:</label><br>
+                    <input id="date" type="date" name="date"><br>
+                    <input type="submit" value="submit">
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+

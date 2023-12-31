@@ -28,23 +28,15 @@
         <div class="h-title">
             <h1>Insert a Recipe</h1>
         </div>
-
-
-    
         <div class="text-father">
             <div class="text-child">            
-                
-
-            <?php echo form_open("Recipelist/insert") ?>
-<label for="text">Recipe title:</label><br>
-<input type="text" name="name" value=""><br>
-<label for="detail">Recipe Detail:</label><br>
-<textarea id="detail" name="detail" rows="10" cols="35"></textarea><br>
-<input type="submit" value="submit">
-</form>
-            
-
-
+                <?php echo form_open("Recipelist/insert") ?>
+                    <label for="text">Recipe title:</label><br>
+                    <input type="text" name="name" value=""><br>
+                    <label for="detail">Recipe Detail:</label><br>
+                    <textarea id="detail" name="detail" rows="10" cols="35"></textarea><br>
+                    <input type="submit" value="submit">
+                </form>
             </div>
         </div>
     </div>

@@ -160,7 +160,15 @@
     </div>
   </div>
 
-  
+  <div class="dropdown">
+    <button class="dropbtn">Blog
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    <?php echo anchor("blog/insert","Insert a Blog"); ?>
+  <?php echo anchor("blog/list","Show My Blogs"); ?>
+    </div>
+  </div>
 
 
 

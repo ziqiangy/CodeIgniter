@@ -26,19 +26,21 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Update Recipe</h1>
+            <h1>Update Blog</h1>
         </div>
         <div class="text-father">
             <div class="text-child">                            
-            <?php echo form_open("Recipelist/update") ?>
-                <label for="text">Recipe Title:</label><br>
-                <input type="text" name="name" value="<?php echo $name ?>"><br>
-                <label for="detail">Recipe Detail:</label><br>
-                <textarea id="detail" name="detail" rows="10" cols="35"><?php echo $detail ?></textarea><br>
+            <?php echo form_open("blog/update") ?>
+                <label for="title">Blog title:</label><br>
+                <input type="text" name="title" value="<?php echo $title ?>"><br>
+                <label for="content">Blog detail:</label><br>
+                <textarea id="content" name="content" rows="10" cols="35"><?php echo $content ?></textarea><br>
+                <label for="date">Blog date:</label><br>
+                <input id="date" type="date" name="date" value="<?php echo $date ?>"><br>
                 <input type="hidden" name="id" value="<?php echo $id ?>">
                 <input type="submit" value="submit">
             </form>
-                <?php echo anchor("Recipelist/delete/".strval($id),"delete") ?>
+                <?php echo anchor("blog/delete/".strval($id),"delete") ?>
             </div>
         </div>
     </div>
