@@ -170,6 +170,15 @@
     </div>
   </div>
 
+  <div class="dropdown">
+    <button class="dropbtn">Todo
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    <?php echo anchor("todo/insert","Insert a Todo"); ?>
+  <?php echo anchor("todo/list","Show My Todos"); ?>
+    </div>
+  </div>
 
 
   <?php if(isset($_SESSION["user_id"])){
