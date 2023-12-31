@@ -5,7 +5,7 @@
     }
     .box-child{   
         width:400px;
-        height:400px;
+        height:600px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -37,6 +37,24 @@
                 <textarea id="desc" name="desc" rows="10" cols="35"><?php echo $desc ?></textarea><br>
                 <label for="duedate">Due Date:</label><br>
                 <input id="duedate" type="date" name="duedate" value="<?php echo $duedate ?>"><br>
+
+
+
+                <p>Is this Important?</p>
+                    <input type="radio" id="isimportant" name="isimportant" value="1" <?php echo $isimportant=="1" ? "checked":""; ?>>
+                    <label for="isimportant">Yes</label><br>
+                    <input type="radio" id="notimportant" name="isimportant" value="0" <?php echo $isimportant=="0" ? "checked":""; ?>>
+                    <label for="notimportant">No</label><br>
+
+
+                    <p>Is this Done?</p>
+                    <input type="radio" id="isdone" name="isdone" value="1" <?php echo $isdone=="1" ? "checked":""; ?>>
+                    <label for="isdone">Yes</label><br>
+                    <input type="radio" id="notdone" name="isdone" value="0" <?php echo $isdone=="0" ? "checked":""; ?>>
+                    <label for="notdone">No</label><br>
+
+
+
                 <input type="hidden" name="id" value="<?php echo $id ?>">
                 <input type="submit" value="submit">
             </form>

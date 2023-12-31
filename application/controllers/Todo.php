@@ -23,11 +23,26 @@ class Todo extends CI_Controller{
                 "user_id" => $this->user_id,
                 "task" => $form_data["task"],
                 "desc" => $form_data["desc"],
-                "duedate" => $form_data["duedate"]
+                "isdone" => $form_data["isdone"]
             );
 
-            $form_data["duedate"] = date('Y-m-d H:i:s',strtotime($form_data["duedate"]));
             
+            if(isset($form_data["duedate"])&&!empty($form_data["duedate"])){
+
+                $form_data["duedate"] = date('Y-m-d H:i:s',strtotime($form_data["duedate"]));
+
+                $data["duedate"] = $form_data["duedate"];
+        
+            }
+
+            if(isset($form_data["isimportant"])&&!empty($form_data["isimportant"])){
+                
+                $data["isimportant"] = $form_data["isimportant"];
+            }
+
+            // var_dump($data);
+            
+            // var_dump($form_data["duedate"]);
             $this->Todos->insert($data);
             redirect("todo/list");
         }
@@ -48,8 +63,14 @@ class Todo extends CI_Controller{
             $data = array(
                 "task" => $form_data["task"],
                 "desc" => $form_data["desc"],
-                "duedate" => $form_data["duedate"]
+                "duedate" => $form_data["duedate"],
+                "isdone" => $form_data["isdone"]
             );
+            if(isset($form_data["isimportant"])){
+                
+                $data["isimportant"] = $form_data["isimportant"];
+                echo $form_data["isimportant"];
+            }
             // var_dump($data);
             $this->Todos->update($form_data["id"],$data);
             redirect("todo/list");

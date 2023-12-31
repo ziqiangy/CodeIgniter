@@ -5,7 +5,7 @@
     }
     .box-child{   
         width:400px;
-        height:400px;
+        height:600px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -36,7 +36,17 @@
                     <label for="desc">Description:</label><br>
                     <textarea id="desc" name="desc" rows="10" cols="35"></textarea><br>
                     <label for="duedate">Due Date:</label><br>
-                    <input id="duedate" type="date" name="duedate"><br>
+                    <input id="duedate" type="date" name="duedate" value=""><br>
+
+
+                    <p>Is this Important?</p>
+                    <input type="radio" id="isimportant" name="isimportant" value="1">
+                    <label for="isimportant">Yes</label><br>
+                    <input type="radio" id="notimportant" name="isimportant" value="0">
+                    <label for="notimportant">No</label><br>
+
+                    <input type="hidden" name="isdone" value="0">
+
                     <input type="submit" value="submit">
                 </form>
             </div>
