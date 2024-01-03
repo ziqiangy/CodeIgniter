@@ -109,28 +109,20 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-    <?php echo anchor("flashcard/oneCardView","Flashcard Study"); ?>
-  <?php echo anchor("flashcard/displayAllList","List Flashcards"); ?>
-  <?php echo anchor("flashcard/insertView","Insert Flashcard"); ?>
-  <?php echo anchor("flashcard/displayMultiInsert","Insert Multi"); ?>
+      <?php echo anchor("flashcard/oneCardView","Flashcard Study"); ?>
+      <?php echo anchor("flashcard/displayAllList","List Flashcards"); ?>
+      <?php echo anchor("flashcard/insertView","Insert One"); ?>
+      <?php echo anchor("flashcard/displayMultiInsert","Insert Multi"); ?>
+      <?php echo anchor("flashcate/list","Show My Categories"); ?>
+      <?php echo anchor("flashcate/insert","Insert Category"); ?>
+      <?php echo anchor("flashcard/searchByCate","Search By Category"); ?>
     </div>
   </div> 
 
 
-  <div class="dropdown">
-    <button class="dropbtn">Flashcard Categories 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-    <?php echo anchor("flashcate/list","Show My Categories"); ?>
-  <?php echo anchor("flashcate/insert","Insert Category"); ?>
-  <?php echo anchor("flashcard/searchByCate","Search By Category"); ?>
-    </div>
-  </div> 
-
 
   <div class="dropdown">
-    <button class="dropbtn">Quick Notes 
+    <button class="dropbtn">Quick Note 
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
@@ -141,17 +133,17 @@
 
 
   <div class="dropdown">
-    <button class="dropbtn">Reading List
+    <button class="dropbtn">Playlist
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-    <?php echo anchor("Readinglist/insert","Insert a Book"); ?>
-  <?php echo anchor("Readinglist/list","Show My Books"); ?>
+    <?php echo anchor("Readinglist/insert","Insert a Play"); ?>
+  <?php echo anchor("Readinglist/list","Show my Playlist"); ?>
     </div>
   </div> 
 
   <div class="dropdown">
-    <button class="dropbtn">Recipe List
+    <button class="dropbtn">Recipe
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">

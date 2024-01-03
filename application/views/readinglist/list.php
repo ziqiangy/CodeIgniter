@@ -5,7 +5,7 @@
     }
     .box-child{   
         width:400px;
-        height:300px;
+        /* height:300px; */
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -26,7 +26,7 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Notes list</h1>
+            <h1>Playlist</h1>
         </div>
 
 
@@ -39,7 +39,7 @@
 
             <table>
     <tr>
-        <th>Reading list</th>
+        <th>Playlist</th>
         
     </tr>
     <?php foreach($data as $d) { ?>
