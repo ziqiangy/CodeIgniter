@@ -22,12 +22,14 @@ class Blog extends CI_Controller{
             $data = array(
                 "user_id" => $this->user_id,
                 "title" => $form_data["title"],
-                "content" => $form_data["content"],
-                "date" => $form_data["date"]
+                "content" => $form_data["content"]
             );
-
-            $form_data["date"] = date('Y-m-d H:i:s',strtotime($form_data["date"]));
+            if(!empty($form_data["date"])){
+                $data["date"] = form_data["date"];
+            }
+            // var_dump($data);
             
+            // var_dump($data);
             $this->Blogs->insert($data);
             redirect("blog/list");
         }
@@ -37,7 +39,10 @@ class Blog extends CI_Controller{
         if($this->input->server("REQUEST_METHOD")=="GET"){
             
             [$data] = $this->Blogs->displayWithId($id);
-            $data["date"] = date('Y-m-d',strtotime($data["date"]));
+            if(isset($data["date"])){
+                $data["date"] = date('Y-m-d',strtotime($data["date"]));
+            }
+            
             $this->load->view("templates/header");
             $this->load->view("blog/update",$data);
         }elseif($this->input->server("REQUEST_METHOD")=="POST"){
