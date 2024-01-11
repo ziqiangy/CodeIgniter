@@ -24,13 +24,14 @@ class Blog extends CI_Controller{
                 "title" => $form_data["title"],
                 "content" => $form_data["content"]
             );
-            if(!empty($form_data["date"])){
+            if(isset($form_data["date"])&&!empty($form_data["date"])){
+
                 $form_data["date"] = date('Y-m-d H:i:s',strtotime($form_data["date"]));
-                $data["date"] = form_data["date"];
+
+                $data["date"] = $form_data["date"];
             }
             // var_dump($data);
             
-            // var_dump($data);
             $this->Blogs->insert($data);
             redirect("blog/list");
         }
@@ -40,7 +41,7 @@ class Blog extends CI_Controller{
         if($this->input->server("REQUEST_METHOD")=="GET"){
             
             [$data] = $this->Blogs->displayWithId($id);
-            if(isset($data["date"])){
+            if(isset($data["date"])&&!empty($data["date"])){
                 $data["date"] = date('Y-m-d',strtotime($data["date"]));
             }
             
@@ -62,9 +63,9 @@ class Blog extends CI_Controller{
                 "title" => $form_data["title"],
                 "content" => $form_data["content"]
             );
-            if(!empty($form_data["date"])){
+            if(isset($form_data["date"])&&!empty($form_data["date"])){
                 $form_data["date"] = date('Y-m-d H:i:s',strtotime($form_data["date"]));
-                $data["date"] = form_data["date"];
+                $data["date"] = $form_data["date"];
             }
             // var_dump($data);
             $this->Blogs->update($form_data["id"],$data);
