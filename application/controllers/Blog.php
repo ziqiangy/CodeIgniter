@@ -49,12 +49,22 @@ class Blog extends CI_Controller{
             $form_data = $this->input->post();
             //if date is null or no content, set to current time: $date = array("update_time"=>date('Y-m-d H:i:s'));
             
-            $form_data["date"] = date('Y-m-d H:i:s',strtotime($form_data["date"]));
+            
+            // $data = array(
+            //     "title" => $form_data["title"],
+            //     "content" => $form_data["content"],
+            //     "date" => $form_data["date"]
+            // );
+
+
             $data = array(
                 "title" => $form_data["title"],
-                "content" => $form_data["content"],
-                "date" => $form_data["date"]
+                "content" => $form_data["content"]
             );
+            if(!empty($form_data["date"])){
+                $form_data["date"] = date('Y-m-d H:i:s',strtotime($form_data["date"]));
+                $data["date"] = form_data["date"];
+            }
             // var_dump($data);
             $this->Blogs->update($form_data["id"],$data);
             redirect("blog/list");
