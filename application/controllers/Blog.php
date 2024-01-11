@@ -62,7 +62,7 @@ class Blog extends CI_Controller{
                 "content" => $form_data["content"]
             );
             if(!empty($form_data["date"])){
-                $form_data["date"] = date('Y-m-d H:i:s',strtotime($form_data["date"]));
+                $form_data["date"] = date('Y-m-d',strtotime($form_data["date"]));
                 $data["date"] = form_data["date"];
             }
             // var_dump($data);

@@ -37,6 +37,8 @@
                     <textarea id="content" name="content" rows="10" cols="35"></textarea><br>
                     <label for="date">Blog date:</label><br>
                     <input id="date" type="date" name="date"><br>
+                    <br>
+                <br>
                     <input type="submit" value="submit">
                 </form>
             </div>

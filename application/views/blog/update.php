@@ -38,8 +38,12 @@
                 <label for="date">Blog date:</label><br>
                 <input id="date" type="date" name="date" value="<?php echo $date ?>"><br>
                 <input type="hidden" name="id" value="<?php echo $id ?>">
+                <br>
+                <br>
                 <input type="submit" value="submit">
             </form>
+                <br>
+                <br>
                 <?php echo anchor("blog/delete/".strval($id),"delete") ?>
             </div>
         </div>
