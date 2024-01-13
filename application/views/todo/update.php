@@ -5,7 +5,7 @@
     }
     .box-child{   
         width:400px;
-        height:600px;
+        /* height:600px; */
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -56,8 +56,9 @@
 
 
                 <input type="hidden" name="id" value="<?php echo $id ?>">
-                <input type="submit" value="submit">
+                <input type="submit" value="update">
             </form>
+            <br><br>
                 <?php echo anchor("todo/delete/".strval($id),"delete") ?>
             </div>
         </div>

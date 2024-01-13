@@ -66,6 +66,8 @@ class Blog extends CI_Controller{
             if(isset($form_data["date"])&&!empty($form_data["date"])){
                 $form_data["date"] = date('Y-m-d H:i:s',strtotime($form_data["date"]));
                 $data["date"] = $form_data["date"];
+            }else{
+                $data["date"] = "NULL";
             }
             // var_dump($data);
             $this->Blogs->update($form_data["id"],$data);

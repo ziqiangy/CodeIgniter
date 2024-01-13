@@ -52,7 +52,10 @@ class Todo extends CI_Controller{
         if($this->input->server("REQUEST_METHOD")=="GET"){
             
             [$data] = $this->Todos->displayWithId($id);
-            $data["duedate"] = date('Y-m-d',strtotime($data["duedate"]));
+            if(isset($data["duedate"])&&!empty($data["duedate"])){
+                $data["duedate"] = date('Y-m-d',strtotime($data["duedate"]));
+            }
+            
             $this->load->view("templates/header");
             $this->load->view("todo/update",$data);
         }elseif($this->input->server("REQUEST_METHOD")=="POST"){

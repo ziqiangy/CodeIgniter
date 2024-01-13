@@ -5,7 +5,7 @@
     }
     .box-child{   
         width:400px;
-        height:600px;
+        /* height:600px; */
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -37,8 +37,6 @@
                     <textarea id="content" name="content" rows="20" cols="35"></textarea><br>
                     <label for="date">Blog date:</label><br>
                     <input id="date" type="date" name="date"><br>
-                    <br>
-                <br>
                     <input type="submit" value="submit">
                 </form>
             </div>

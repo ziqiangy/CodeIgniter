@@ -5,7 +5,7 @@
     }
     .box-child{   
         width:400px;
-        height:600px;
+        /* height:600px; */
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -38,9 +38,7 @@
                 <label for="date">Blog date:</label><br>
                 <input id="date" type="date" name="date" value="<?php echo $date ?>"><br>
                 <input type="hidden" name="id" value="<?php echo $id ?>">
-                <br>
-                <br>
-                <input type="submit" value="submit">
+                <input type="submit" value="update">
             </form>
                 <br>
                 <br>
