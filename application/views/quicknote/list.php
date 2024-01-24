@@ -1,10 +1,10 @@
 <style>
-    .box-father{
+    /* .box-father{
         display:flex;
         justify-content:center;
-    }
+    } */
     .box-child{   
-        width:400px;
+        /* width:400px; */
         /* height:300px; */
         border:3px solid black;
         background-color:#fff7d1;
