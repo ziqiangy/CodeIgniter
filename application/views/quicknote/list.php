@@ -16,10 +16,10 @@
     .h-title{
         text-align:center;
     }
-    .text-father{
+    /* .text-father{
         display:flex;
         justify-content:center;
-    }
+    } */
 
     
     .element{
