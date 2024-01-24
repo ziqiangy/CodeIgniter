@@ -27,6 +27,7 @@
         margin-bottom:20px;
         padding-top:20px;
         border-top:1px solid black;
+        word-wrap:break-word;
         
     }
 </style>
