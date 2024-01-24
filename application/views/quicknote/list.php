@@ -21,25 +21,13 @@
         justify-content:center;
     }
 
-    td:nth-child(1) {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        float: left;	
-        width: 100%;
-        word-break: break-all;
-        text-overflow: ellipsis;
-
-        /* white-space: wrap;
-        overflow: hidden;
-        text-overflow:ellipsis; */
-
-        /* margin-top:10px; */
-        /* padding-bottom:10px; */
-        margin-bottom:25px;
-        /* border-bottom:2px solid black; */
-
+    
+    .element{
+        margin-top:20px;
+        margin-bottom:20px;
+        padding-top:20px;
+        border-top:1px solid black;
+        
     }
 </style>
 
@@ -51,16 +39,16 @@
         </div>
         <div class="text-father">
             <div class="text-child">         
-                <table>
-                    <tr>
-                        <th>Notes</th>
-                    </tr>
+                
                     <?php foreach($data as $d) { ?>
-                            <tr class="">
-                                <td><?php echo anchor("quicknote/update/".$d['id'],$d['content']); ?></td>           
-                            </tr>
+                                <?php 
+                                    if(strlen($d['content'])>300){
+                                        $d['content']=substr($d['content'],0,300)."...";
+                                        }; ?>
+                                <div class="element"><?php echo anchor("quicknote/update/".$d['id'],$d['content']); ?></div>           
+                            
                         <?php } ?>
-                </table>
+                
             </div>
         </div>
     </div>

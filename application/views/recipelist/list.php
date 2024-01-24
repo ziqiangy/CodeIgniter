@@ -26,7 +26,7 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Notes list</h1>
+            <h1>Recipe list</h1>
         </div>
         <div class="text-father">
             <div class="text-child">            
