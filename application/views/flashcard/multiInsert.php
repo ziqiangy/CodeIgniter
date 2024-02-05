@@ -42,7 +42,8 @@
                     transform: translateY(-2px);
                 }
                 
-}
+    }
+
 
 
 </style>
@@ -84,12 +85,7 @@
             
             <div id="addBtn">add</div>
 
-
-
-
-
-
-    <input type="submit" value="Submit"/>
+    <input class="btn btn-primary" type="submit" value="Submit"/>
 </form>
 
 
