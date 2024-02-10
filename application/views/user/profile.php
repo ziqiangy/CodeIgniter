@@ -5,7 +5,6 @@
     }
     .box-child{   
         width:400px;
-        height:500px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -41,26 +40,32 @@
 
     <?php echo form_open("user/update") ?>
     <fieldset>
-        <label>Firstname</label><br>
-        <input type="text" name='firstname' value=<?php echo $firstname ?>><br>
-        <label>Lastname</label><br>
-        <input type="text" name='lastname' value=<?php echo $lastname ?>><br>
+        <div class="form-group">
+        <label for="firstname">Firstname</label>
+        <input class="form-control" type="text" id="firstname" name='firstname' value=<?php echo $firstname ?>>
+        
+        </div>
+        <div class="form-group">
+        <label for="lastname">Lastname</label>
+        <input class="form-control" type="text" id="lastname" name='lastname' value=<?php echo $lastname ?>>
+        
+        </div>
         <input type="hidden" name='id' value=<?php echo $id ?>>
-        <input type="submit" value="update"><br>
+        <input class="btn btn-primary mt-2" type="submit" value="update">
     </fieldset>
     </form>
 
-    <br>
-    <br>
+    
+    
 
     <?php echo form_open("user/logout") ?>
-        <input type="submit" value="logout"><br>
+        <input class="btn btn-success mt-2" type="submit" value="logout">
     </form>
 
-    <br>
-    <br>
+    
+    
     <?php echo form_open("user/deactivate") ?>
-        <input type="submit" value="Close account"><br>
+        <input class="btn btn-danger mt-2" type="submit" value="Close account">
     </form>
     </div>
         </div>

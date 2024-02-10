@@ -5,7 +5,6 @@
     }
     .box-child{   
         width:400px;
-        height:300px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -26,7 +25,10 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Categories</h1>
+            <h3>Categories</h3>
+        </div>
+        <div>
+<?php echo anchor("flashcate/insert","insert",array("class"=>"btn btn-primary")) ?>
         </div>
 
 

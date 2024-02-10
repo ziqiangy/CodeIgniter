@@ -26,7 +26,7 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Insert a Category</h1>
+            <h3>Insert a Category</h3>
         </div>
 
 
@@ -36,9 +36,12 @@
                 
 
             <?php echo form_open("flashcate/insert") ?>
-<label for="name">category name:</label>
-<input type="text" name="name" value="">
-<input type="submit" value="submit">
+            <div class="form-group">
+            <label for="name">category name:</label>
+<input id="name" class="form-control" type="text" name="name" value="">
+                
+            </div>
+<input type="submit" class="btn btn-primary mt-2" value="submit">
 </form>
             
 

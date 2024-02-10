@@ -26,8 +26,9 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Recipe list</h1>
+            <h3>Recipe list</h3>
         </div>
+        <?php echo anchor("recipelist/insert","insert",array("class"=>"btn btn-primary mt-2")); ?>
         <div class="text-father">
             <div class="text-child">            
             <table>

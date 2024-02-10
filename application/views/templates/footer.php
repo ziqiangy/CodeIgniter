@@ -9,8 +9,8 @@
 
 <div class="footer">
     <div>
-    wordmemo app.
-    <em>&copy;2023</em>
+    My Home Management App.
+    <em>&copy;2024</em>
     </div>
 
 </div>

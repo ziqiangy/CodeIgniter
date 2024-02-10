@@ -51,6 +51,8 @@
         <div class="h-title">
             <h1>List Cards</h1>
         </div>
+
+        <?php echo anchor("flashcard/insertView","insert",["class"=>"btn btn-primary"]); ?>
     
         <div class="text-father">
             <div class="text-child">      

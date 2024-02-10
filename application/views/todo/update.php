@@ -31,35 +31,61 @@
         <div class="text-father">
             <div class="text-child">                            
             <?php echo form_open("todo/update") ?>
-                <label for="task">Task:</label><br>
-                <input type="text" name="task" value="<?php echo $task ?>"><br>
-                <label for="desc">Description:</label><br>
-                <textarea id="desc" name="desc" rows="10" cols="35"><?php echo $desc ?></textarea><br>
-                <label for="duedate">Due Date:</label><br>
-                <input id="duedate" type="date" name="duedate" value="<?php echo $duedate ?>"><br>
+                
+                <div class="form-group">
+                <label for="task">Task:</label>
+                    <input class="form-control" id="task" type="text" name="task" value="<?php echo $task ?>">
+                    
+                </div>
+                <div class="form-group">
+                <label for="desc">Description:</label>
+                    <textarea class="form-control" id="desc" name="desc" rows="10" cols="35"><?php echo $desc ?></textarea>
+                </div>
+                <div class="form-group">
+                <label for="duedate">Due Date:</label>
+                    <input id="duedate" class="form-control" type="date" name="duedate" value="<?php echo $duedate ?>">
+                </div>
+                    
+                   
+                    <p>Is this Important?</p>
+                    <div class="form-check">
+                    <input type="radio" class="form-check-input" id="isimportant" name="isimportant" value="1" <?php echo $isimportant=="1" ? "checked":""; ?>>
+                    <label for="isimportant" class="form-check-label">Yes</label>
+                    
+                    </div>
+                    <div class="form-check">
+                    <input type="radio" id="notimportant" class="form-check-input" name="isimportant" value="0" <?php echo $isimportant=="0" ? "checked":""; ?>>
+                    <label for="notimportant" class="form-check-label">No</label>
+                    </div>
 
-
-
-                <p>Is this Important?</p>
-                    <input type="radio" id="isimportant" name="isimportant" value="1" <?php echo $isimportant=="1" ? "checked":""; ?>>
-                    <label for="isimportant">Yes</label><br>
-                    <input type="radio" id="notimportant" name="isimportant" value="0" <?php echo $isimportant=="0" ? "checked":""; ?>>
-                    <label for="notimportant">No</label><br>
 
 
                     <p>Is this Done?</p>
-                    <input type="radio" id="isdone" name="isdone" value="1" <?php echo $isdone=="1" ? "checked":""; ?>>
-                    <label for="isdone">Yes</label><br>
-                    <input type="radio" id="notdone" name="isdone" value="0" <?php echo $isdone=="0" ? "checked":""; ?>>
-                    <label for="notdone">No</label><br>
+                    <div class="form-check">
+                    <input type="radio" class="form-check-input" id="isdone" name="isdone" value="1" <?php echo $isdone=="1" ? "checked":""; ?>>
+                    <label for="isdone" class="form-check-label">Yes</label>
+                    </div>
+                    <div class="form-check">
+                    <input type="radio" class="form-check-input" id="notdone" name="isdone" value="0" <?php echo $isdone=="0" ? "checked":""; ?>>
+                    <label for="notdone" class="form-check-label">No</label>
+
+                    </div>
+                    
+                    
 
 
 
-                <input type="hidden" name="id" value="<?php echo $id ?>">
-                <input type="submit" value="update">
+                    <input type="hidden" name="id" value="<?php echo $id ?>">
+
+                    <input class="btn btn-primary" type="submit" value="update">
+
+
+
+
+
             </form>
-            <br><br>
-                <?php echo anchor("todo/delete/".strval($id),"delete") ?>
+            <br>
+                <?php echo anchor("todo/delete/".strval($id),"delete",array("class"=>"btn btn-danger mt-2")) ?>
             </div>
         </div>
     </div>

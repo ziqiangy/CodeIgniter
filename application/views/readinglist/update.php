@@ -5,7 +5,6 @@
     }
     .box-child{   
         width:400px;
-        height:400px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -26,7 +25,7 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Update Quick note</h1>
+            <h3>Update Quick note</h3>
         </div>
 
 
@@ -38,13 +37,23 @@
             <?php echo form_open("Readinglist/update") ?>
 
 
-            <label for="text">Book Title:</label><br>
-            <input type="text" name="name" value="<?php echo $name ?>"><br>
-            <label for="detail">Book Detail:</label><br>
-            <textarea id="detail" name="detail" rows="10" cols="35"><?php echo $detail ?></textarea><br>
+            
+
+
+            <div class="form-group">
+            <label for="text">Play Title:</label>
+<input type="text" name="name" class="form-control" id="text" value="<?php echo $name ?>">
+
+            </div>
+            <div class="form-group">
+            <label for="detail">Play Detail:</label>
+<textarea id="detail" class="form-control" name="detail" rows="10" cols="35"><?php echo $detail ?></textarea>
+
+            </div>
             <input type="hidden" name="id" value="<?php echo $id ?>">
 
-            <input type="submit" value="submit">
+<input class="btn btn-primary mt-2" type="submit" value="submit">
+</form>
 </form>
 
 
@@ -55,7 +64,7 @@
 
 
 
-<?php echo anchor("Readinglist/delete/".strval($id),"delete") ?>
+<?php echo anchor("Readinglist/delete/".strval($id),"delete", array("class"=>"btn btn-danger mt-2")) ?>
             
 
 

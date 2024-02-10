@@ -5,7 +5,6 @@
     }
     .box-child{   
         width:400px;
-        height:400px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -26,16 +25,22 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Insert a Recipe</h1>
+            <h3>Insert a Recipe</h3>
         </div>
         <div class="text-father">
             <div class="text-child">            
                 <?php echo form_open("Recipelist/insert") ?>
-                    <label for="text">Recipe title:</label><br>
-                    <input type="text" name="name" value=""><br>
-                    <label for="detail">Recipe Detail:</label><br>
-                    <textarea id="detail" name="detail" rows="10" cols="35"></textarea><br>
-                    <input type="submit" value="submit">
+                <div class="form-group">
+                <label for="text">Recipe title:</label>
+                    <input class="form-control" type="text" id="text" name="name" value="">
+                    
+                </div>
+                <div class="form-group">
+                <label for="detail">Recipe Detail:</label>
+                    <textarea class="form-control" id="detail" name="detail" rows="10" cols="35"></textarea>
+                    
+                </div>
+                    <input class="btn btn-primary mt-2" type="submit" value="submit">
                 </form>
             </div>
         </div>

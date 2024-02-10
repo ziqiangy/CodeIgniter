@@ -5,7 +5,6 @@
     }
     .box-child{   
         width:400px;
-        /* height:600px; */
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -26,18 +25,27 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Insert a Blog</h1>
+            <h3>Insert a Blog</h3>
         </div>
         <div class="text-father">
             <div class="text-child">            
                 <?php echo form_open("blog/insert") ?>
-                    <label for="title">Blog title:</label><br>
-                    <input type="text" name="title" value=""><br>
-                    <label for="content">Blog detail:</label><br>
-                    <textarea id="content" name="content" rows="20" cols="35"></textarea><br>
-                    <label for="date">Blog date:</label><br>
-                    <input id="date" type="date" name="date"><br>
-                    <input type="submit" value="submit">
+                <div class="form-group">
+                <label for="title">Blog title:</label>
+                    <input class="form-control" type="text" id="title" name="title" value="">
+                    
+                </div>
+                <div class="form-group">
+                <label for="content">Blog detail:</label>
+                    <textarea class="form-control" id="content" name="content" rows="20" cols="35"></textarea>
+                    
+                </div>
+                <div class="form-group">
+                <label for="date">Blog date:</label>
+                    <input class="form-control" id="date" type="date" name="date">
+                    
+                </div>
+                    <input class="btn btn-primary mt-2" type="submit" value="submit">
                 </form>
             </div>
         </div>

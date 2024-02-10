@@ -52,7 +52,7 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Insert Flashcards</h1>
+            <h3>Insert Flashcards</h3>
         </div>
 
 
@@ -66,24 +66,34 @@
             <div id="insertList">
 
                 <div class="insertItem">
-                    
-                    <label for="term">Term:</label><br>
-                    <input type="text" name="term[]" id="term" value=""/><br>
-                    <label for="definition">Definition:</label><br>
-                    <textarea name="definition[]" id="definition" rows="5" cols="35"></textarea><br>
-                    <label for="category_id">Flashcard Categories</label>
-                    <select name="category_id[]" id="category_id">
+<div class="form-group">
+<label for="term">Term:</label>
+                    <input class="form-control" type="text" name="term[]" id="term" value=""/>
+    
+
+</div>                    
+<div class="form-group">
+<label for="definition">Definition:</label>
+                    <textarea class="form-control" name="definition[]" id="definition" rows="5" cols="35"></textarea>
+    
+</div>
+
+<div class="form-group">
+<label for="category_id">Flashcard Categories</label>
+                    <select class="form-control" name="category_id[]" id="category_id">
                         <option value="">No Category</option>
                         <?php foreach($data as $d){ ?>
                             <option value="<?php echo $d["id"] ?>"><?php echo $d["name"] ?></option>
                         <?php } ?>
                     </select>
+    
+</div>
                     
                 </div>
 
             </div>
             
-            <div id="addBtn">add</div>
+            <div class="btn btn-primary mt-2" id="addBtn">add</div>
 
     <input class="btn btn-primary" type="submit" value="Submit"/>
 </form>

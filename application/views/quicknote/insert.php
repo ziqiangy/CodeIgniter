@@ -5,7 +5,6 @@
     }
     .box-child{   
         width:400px;
-        height:300px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -26,7 +25,7 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Insert a Quick Note</h1>
+            <h3>Insert a Quick Note</h3>
         </div>
 
 
@@ -36,9 +35,12 @@
                 
 
             <?php echo form_open("Quicknote/insert") ?>
-<label for="content">Quick Note:</label><br>
-<textarea id="content" name="content" rows="10" cols="35"></textarea><br>
-<input type="submit" value="submit">
+            <div class="form-group">
+            <label for="content">Quick Note:</label>
+<textarea class="form-control" id="content" name="content" rows="10" cols="35"></textarea>
+
+            </div>
+<input class="btn btn-primary mt-2" type="submit" value="submit">
 </form>
             
 

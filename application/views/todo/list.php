@@ -26,8 +26,10 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Todo list</h1>
+            <h3>Todo list</h3>
         </div>
+        <?php echo anchor("todo/insert","insert",array("class"=>"btn btn-primary")) ?>
+
         <div class="text-father">
             <div class="text-child">            
             <table>

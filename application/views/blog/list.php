@@ -5,7 +5,6 @@
     }
     .box-child{   
         width:400px;
-        /* height:300px; */
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -28,6 +27,7 @@
         <div class="h-title">
             <h1>Blog list</h1>
         </div>
+        <?php echo anchor("blog/insert","insert",array("class"=>"btn btn-primary")) ?>
         <div class="text-father">
             <div class="text-child">            
             <table>

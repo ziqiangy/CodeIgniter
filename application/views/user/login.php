@@ -6,7 +6,6 @@
     }
     .box-child{   
         width:400px;
-        height:300px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -38,11 +37,18 @@
                 <?php if(isset($err)) echo $err ?>
 
                 <?php echo form_open('user/login') ?>
-                <label for="">Username or Email</label><br>
-                <input type="text" name='username' value=''><br>
-                <label for="">Password</label><br>
-                <input type="password" name='password' value=''><br>
-                <input type="submit" value='login'><br>
+                <div class="form-group">
+                <label for="username">Username or Email</label>
+                <input type="text" class="form-control" name='username' id="username" value=''>
+                
+                </div>
+
+                <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name='password' id="password" value=''>
+                
+                </div>
+                <input class="btn btn-primary mt-2" type="submit" value='login'>
 
                 </form>
 

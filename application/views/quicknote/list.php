@@ -36,7 +36,10 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Notes</h1>
+            <h3>Notes</h3>
+        </div>
+        <div>
+            <?php echo anchor("quicknote/insert","insert",array("class"=>"btn btn-primary mt-2")); ?>
         </div>
         <div class="text-father">
             <div class="text-child">         

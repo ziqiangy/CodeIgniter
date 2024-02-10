@@ -28,6 +28,8 @@
         <div class="h-title">
             <h1>Playlist</h1>
         </div>
+        <?php echo anchor("Readinglist/insert/","insert", array("class"=>"btn btn-primary mt-2")) ?>
+
 
 
     

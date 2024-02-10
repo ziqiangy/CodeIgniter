@@ -5,7 +5,6 @@
     }
     .box-child{   
         width:400px;
-        height:500px;
         border:3px solid black;
         background-color:#fff7d1;
         border-radius:10px;
@@ -36,35 +35,46 @@
 
                 <?php echo form_open("user/register"); ?>
 
-                    <label>first name</label><br>
+                <div class="form-group">
+                <label for="firstname">first name</label>
 
-                    <input type="text" name="firstname" value="<?php echo set_value('firstname'); ?>" /><br>
+<input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo set_value('firstname'); ?>" />
 
-                    <label>last name</label><br>
-                    <input type="text" name="lastname" value="<?php echo set_value('lastname'); ?>" /><br>
+                </div>
 
-                    <label>username</label><br>
-                    <input type="text" name="username" value="<?php echo set_value('username'); ?>" /><br>
 
-                    <label>password</label><br>
-                    <input type="password" name="password" value="<?php echo set_value('password'); ?>" /><br>
+                <div class="form-group">
+                <label for="lastname">last name</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo set_value('lastname'); ?>" />
 
-                    <label>email</label><br>
-                    <input type="text" name="email" value="<?php echo set_value('email'); ?>" /><br>
+                </div>
+                <div class="form-group">
+                <label for="email">email</label>
+                    <input type="text" class="form-control" id="email" name="email" value="<?php echo set_value('email'); ?>" />
 
-                    <input type="submit" value="Register" /><br>
+                </div>
+                <div class="form-group">
+                <label for="username">username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo set_value('username'); ?>" />
+
+                </div>
+                <div class="form-group">
+                <label for="password">password</label>
+                    <input type="password" class="form-control" id="password" name="password" value="<?php echo set_value('password'); ?>" />
+                    <small class="form-text text-muted">Has minimum 8 characters in length.</small>
+                    <small class="form-text text-muted">At least one uppercase English letter.</small>
+                    <small class="form-text text-muted">At least one lowercase English letter.</small>
+                    <small class="form-text text-muted">At least one digit.</small>
+                    <small class="form-text text-muted">At least one special character, #?!@$%^&*-~</small>
+                </div>
+                    
+                    <input type="submit" class="btn btn-primary mt-2" value="Register" />
 
                 </form>
 
                 </fieldset>
 
-                <ul>
-                    <li>Has minimum 8 characters in length.</li>
-                    <li>At least one uppercase English letter.</li>
-                    <li>At least one lowercase English letter.</li>
-                    <li>At least one digit.</li>
-                    <li>At least one special character, #?!@$%^&*-~</li>
-                </ul>
+            
 
                 <?php echo anchor('user/login','Already have a account? Go Login') ?>
                             

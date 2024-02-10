@@ -31,18 +31,28 @@
         <div class="text-father">
             <div class="text-child">                            
             <?php echo form_open("blog/update") ?>
-                <label for="title">Blog title:</label><br>
-                <input type="text" name="title" value="<?php echo $title ?>"><br>
-                <label for="content">Blog detail:</label><br>
-                <textarea id="content" name="content" rows="20" cols="35"><?php echo $content ?></textarea><br>
-                <label for="date">Blog date:</label><br>
-                <input id="date" type="date" name="date" value="<?php echo $date ?>"><br>
+                
+            <div class="form-group">
+                <label for="title">Blog title:</label>
+                    <input class="form-control" type="text" id="title" name="title" value="<?php echo $title ?>">
+                    
+                </div>
+                <div class="form-group">
+                <label for="content">Blog detail:</label>
+                    <textarea class="form-control" id="content" name="content" rows="20" cols="35"><?php echo $content ?></textarea>
+                    
+                </div>
+                <div class="form-group">
+                <label for="date">Blog date:</label>
+                    <input class="form-control" id="date" type="date" name="date" value="<?php echo $date ?>">
+                    
+                </div>
                 <input type="hidden" name="id" value="<?php echo $id ?>">
-                <input type="submit" value="update">
-            </form>
+
+                    <input class="btn btn-primary mt-2" type="submit" value="submit">
+                </form>
                 <br>
-                <br>
-                <?php echo anchor("blog/delete/".strval($id),"delete") ?>
+                <?php echo anchor("blog/delete/".strval($id),"delete",array("class"=>"btn btn-danger mt-2")) ?>
             </div>
         </div>
     </div>

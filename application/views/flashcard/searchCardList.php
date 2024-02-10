@@ -27,7 +27,7 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Search Flashcards by Category Name</h1>
+            <h3>Search Flashcards by Category Name</h3>
         </div>
 
 
@@ -37,13 +37,17 @@
                 
 
             <?php echo form_open('flashcard/displayCardsByCate'); ?>
-            <select name="category_id">
+<div class="form-group">
+
+<select class="form-control" name="category_id">
                 <option value="">No Category</option>
             <?php foreach($data as $d){ ?>
                 <option value="<?php echo $d["id"] ?>"><?php echo $d["name"] ?></option>
             <?php } ?>
     </select>
-    <input type="submit" value="Submit"/>
+    
+</div>
+    <input type="submit" class="btn btn-primary mt-2" value="Submit"/>
 </form>
 
 

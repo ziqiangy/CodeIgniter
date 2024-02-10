@@ -26,7 +26,7 @@
 <div class="box-father">
     <div class="box-child">
         <div class="h-title">
-            <h1>Update Category</h1>
+            <h3>Update Category</h3>
         </div>
 
 
@@ -36,13 +36,16 @@
                 
 
             <?php echo form_open("flashcate/update") ?>
-<label for="name">Name:</label>
-<input type="text" name="name" value="<?php echo $name ?>">
+            <div class="form-group">
+            <label for="name">Name:</label>
+<input id="name" class="form-control" type="text" name="name" value="<?php echo $name ?>">
+
+            </div>
 <input type="hidden" name="id" value="<?php echo $id ?>">
-<input type="submit" value="submit">
+<input class="btn btn-primary mt-2" type="submit" value="update">
 </form>
 
-<?php echo anchor("flashcate/delete/".strval($id),"delete") ?>
+<?php echo anchor("flashcate/delete/".strval($id),"delete",array("class"=>"btn btn-danger mt-2")) ?>
             
 
 
