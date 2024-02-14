@@ -1,4 +1,8 @@
 
+<!--end of bootstrap container-->
+</div>
+
+
 <style>
     .footer{
         display:flex;
