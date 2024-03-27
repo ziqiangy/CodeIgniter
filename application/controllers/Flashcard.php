@@ -31,12 +31,18 @@ class Flashcard extends CI_Controller{
         // $arr = $this->flashcards->displayOneOffset($offset,$this->user_id);
         $arr = $this->flashcards->flashWithCateOffset(intval($offset),$this->user_id);
         $countAll = $this->flashcards->countAll($this->user_id);
-        [$data] = $arr;
-        $data["offset"] = $offset;
-        $data["count"] = $countAll;
+        if($countAll==0){
+            $this->load->view('templates/header');
+            $this->load->view('flashcard/insertView');
+        }else{
+            [$data] = $arr;
+            $data["offset"] = $offset;
+            $data["count"] = $countAll;
+            $this->load->view('templates/header');
+            $this->load->view('flashcard/displayOneCard',$data);
+        }
 
-        $this->load->view('templates/header');
-        $this->load->view('flashcard/displayOneCard',$data);
+        
     }
 
     public function displayAllList(){
