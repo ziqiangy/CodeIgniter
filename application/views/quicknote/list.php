@@ -47,10 +47,10 @@
                                     <?php 
                                     echo "<div class='row'>";
                                     
-                                    echo "<div class='col-10'>";
+                                    echo "<div class='col-9'>";
                                     echo $d['content']; 
                                     echo "</div>";
-                                    echo "<div class='col-2' style='margin:auto;'>";
+                                    echo "<div class='col-3' style='margin:auto;'>";
                                     echo anchor("quicknote/update/".$d['id'],"Edit",array("class"=>"btn btn-outline-secondary")); 
                                     echo "</div>";
                                     // echo anchor("quicknote/update/".$d['id'],$d['content']); 

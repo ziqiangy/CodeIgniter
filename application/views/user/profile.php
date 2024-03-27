@@ -64,9 +64,9 @@
 
     
     
-    <?php echo form_open("user/deactivate") ?>
+    <!-- <?php echo form_open("user/deactivate") ?>
         <input class="btn btn-danger mt-2" type="submit" value="Close account">
-    </form>
+    </form> -->
     </div>
         </div>
     </div>
